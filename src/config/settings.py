@@ -61,7 +61,15 @@ class Settings:
         self.METADATA_DIR: Path = PROJECT_ROOT / os.getenv("METADATA_DIR", "data/metadata")
         self.URBANSOUND8K_DIR: Path = PROJECT_ROOT / os.getenv("URBANSOUND8K_DIR", "data/raw/UrbanSound8K")
         self.MODEL_DIR: Path = PROJECT_ROOT / os.getenv("MODEL_DIR", "models")
+        self.DEFAULT_MODEL_PATH: Path = PROJECT_ROOT / os.getenv("MODEL_PATH", "models/cnn_urban_sound.pth")
         self.RESULTS_DIR: Path = PROJECT_ROOT / "results"
+
+        # ============================================
+        # Training Parameters
+        # ============================================
+        self.BATCH_SIZE: int = int(os.getenv("BATCH_SIZE", "32"))
+        self.LEARNING_RATE: float = float(os.getenv("LEARNING_RATE", "0.001"))
+        self.NUM_EPOCHS: int = int(os.getenv("NUM_EPOCHS", "20"))
 
         # ============================================
         # Derived Paths

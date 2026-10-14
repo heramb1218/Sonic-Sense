@@ -15,8 +15,12 @@ soundfile>=0.12.0
 # Visualization
 matplotlib>=3.7.0
 
+# Deep Learning
+torch>=2.0.0
+
 # Configuration
 python-dotenv>=1.0.0
 
 # Testing
 pytest>=7.4.0
+
