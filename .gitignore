@@ -54,9 +54,12 @@ desktop.ini
 .ipynb_checkpoints/
 
 # ============================================
-# Docker
+# Docker & Database
 # ============================================
 docker-compose.override.yml
+*.db
+*.sqlite
+*.sqlite3
 
 # ============================================
 # Results (keep structure, ignore large outputs)

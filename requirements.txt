@@ -22,6 +22,10 @@ torch>=2.0.0
 # Streaming (Phase 5)
 kafka-python-ng>=2.2.0
 
+# Database (Phase 6)
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+
 # Configuration
 python-dotenv>=1.0.0
 

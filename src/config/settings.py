@@ -90,6 +90,16 @@ class Settings:
         self.STREAMING_MODE: str = os.getenv("STREAMING_MODE", "auto")
 
         # ============================================
+        # Database Parameters (Phase 6)
+        # ============================================
+        self.DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///urban_noise.db")
+        self.POSTGRES_DATABASE_URL: str = os.getenv(
+            "POSTGRES_DATABASE_URL",
+            "postgresql://urban_admin:urban_secure_password_123@localhost:5432/urban_noise",
+        )
+        self.DB_ECHO: bool = os.getenv("DB_ECHO", "False").lower() in ("true", "1")
+
+        # ============================================
         # Derived Paths
         # ============================================
         self.URBANSOUND8K_AUDIO_DIR: Path = self.URBANSOUND8K_DIR / "audio"
