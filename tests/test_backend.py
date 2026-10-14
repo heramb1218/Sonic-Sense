@@ -223,3 +223,29 @@ def test_websocket_broadcast_on_post(client, sample_event):
         assert event_data["event_id"] == sample_event["event_id"]
         assert event_data["sound_class"] == sample_event["sound_class"]
         assert event_data["calibrated_db"] == sample_event["calibrated_db"]
+
+
+def test_frontend_root_html(client):
+    """Test that GET / serves the interactive frontend HTML dashboard."""
+    response = client.get("/")
+    assert response.status_code == 200
+    assert "text/html" in response.headers.get("content-type", "")
+    assert "Urban Acoustic Intelligence" in response.text
+    assert "map-viewport" in response.text
+    assert "sound-class-chart" in response.text
+
+
+def test_frontend_css_static(client):
+    """Test serving CSS static stylesheet."""
+    response = client.get("/css/style.css")
+    assert response.status_code == 200
+    assert "text/css" in response.headers.get("content-type", "")
+    assert "--primary-cyan" in response.text
+
+
+def test_frontend_js_static(client):
+    """Test serving JavaScript frontend app entrypoint."""
+    response = client.get("/js/app.js")
+    assert response.status_code == 200
+    assert "AcousticDashboardApp" in response.text
+

@@ -105,6 +105,13 @@ async def websocket_live_stream(websocket: WebSocket):
         ws_manager.disconnect(websocket)
 
 
+# Mount frontend static web application (catch-all at root)
+FRONTEND_DIR = PROJECT_ROOT / "frontend"
+if FRONTEND_DIR.exists():
+    from fastapi.staticfiles import StaticFiles
+    app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
+
+
 if __name__ == "__main__":
     uvicorn.run(
         "backend.main:app",
