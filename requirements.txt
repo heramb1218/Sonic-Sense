@@ -32,6 +32,9 @@ uvicorn>=0.28.0
 pydantic>=2.6.0
 httpx>=0.27.0
 
+# Spatial Indexing (Phase 8)
+h3>=4.0.0
+
 # Configuration
 python-dotenv>=1.0.0
 

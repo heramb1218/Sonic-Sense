@@ -12,6 +12,7 @@ from fastapi import APIRouter, Depends, Query
 
 from src.database.connection import get_db_manager
 from src.database.repository import ObservationRepository
+from src.spatial.h3_grid import H3GridManager
 from backend.schemas.observation import HeatmapPoint, ObservationResponse
 
 router = APIRouter(tags=["Spatial Intelligence"])
@@ -51,48 +52,19 @@ def get_heatmap_points(
 @router.get("/hexagons")
 def get_hexagonal_aggregations(
     resolution: int = Query(8, ge=5, le=11, description="H3 index resolution"),
+    limit: int = Query(500, ge=1, le=2000, description="Max recent observations to aggregate"),
+    geojson: bool = Query(False, description="Return GeoJSON FeatureCollection format if True"),
     repo: ObservationRepository = Depends(get_repository),
 ):
     """Retrieve hexagonal cell-level acoustic aggregations (Uber H3).
 
-    Note: In Phase 7, returns cell-mapped observations; fully expanded in Phase 8.
+    Calculates mean decibels, peak decibels, dominant sound classification,
+    anomaly count, and GeoJSON boundaries for each hexagon.
     """
-    records = repo.get_latest_observations(limit=500)
-    cells = {}
-
-    for r in records:
-        cell_id = r.h3_cell or f"cell_{round(r.latitude, 3)}_{round(r.longitude, 3)}"
-        if cell_id not in cells:
-            cells[cell_id] = {
-                "h3_cell": cell_id,
-                "center_lat": r.latitude,
-                "center_lon": r.longitude,
-                "observation_count": 0,
-                "noise_levels": [],
-                "sound_classes": {},
-            }
-
-        c = cells[cell_id]
-        c["observation_count"] += 1
-        c["noise_levels"].append(r.calibrated_db)
-        c["sound_classes"][r.sound_class] = c["sound_classes"].get(r.sound_class, 0) + 1
-
-    # Compute per-cell statistics
-    result = []
-    for cell_id, data in cells.items():
-        levels = data["noise_levels"]
-        dominant_sound = max(data["sound_classes"].items(), key=lambda x: x[1])[0]
-        result.append({
-            "h3_cell": cell_id,
-            "center_lat": data["center_lat"],
-            "center_lon": data["center_lon"],
-            "observation_count": data["observation_count"],
-            "average_db": round(sum(levels) / len(levels), 1),
-            "max_db": round(max(levels), 1),
-            "dominant_sound_class": dominant_sound,
-        })
-
-    return result
+    aggregated_cells = repo.get_h3_aggregations(resolution=resolution, limit=limit)
+    if geojson:
+        return H3GridManager.to_geojson_feature_collection(aggregated_cells)
+    return aggregated_cells
 
 
 @router.get("/anomalies", response_model=list[ObservationResponse])

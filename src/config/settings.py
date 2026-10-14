@@ -109,6 +109,11 @@ class Settings:
         ]
 
         # ============================================
+        # Spatial / H3 Parameters (Phase 8)
+        # ============================================
+        self.H3_DEFAULT_RESOLUTION: int = int(os.getenv("H3_DEFAULT_RESOLUTION", "8"))
+
+        # ============================================
         # Derived Paths
         # ============================================
         self.URBANSOUND8K_AUDIO_DIR: Path = self.URBANSOUND8K_DIR / "audio"

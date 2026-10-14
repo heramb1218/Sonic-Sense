@@ -1,0 +1,887 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "882a107289fffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.005712,
+              40.714138
+            ],
+            [
+              -74.012086,
+              40.713083
+            ],
+            [
+              -74.014048,
+              40.708626
+            ],
+            [
+              -74.009636,
+              40.705223
+            ],
+            [
+              -74.003263,
+              40.706277
+            ],
+            [
+              -74.001301,
+              40.710735
+            ],
+            [
+              -74.005712,
+              40.714138
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "882a107289fffff",
+        "resolution": 8,
+        "center_lat": 40.70968,
+        "center_lon": -74.007674,
+        "observation_count": 13,
+        "average_db": 80.0,
+        "energy_average_db": 80.2,
+        "peak_db": 80.5,
+        "min_db": 73.5,
+        "dominant_sound_class": "siren",
+        "sound_class_distribution": {
+          "siren": 13
+        },
+        "anomaly_count": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "88608850c5fffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.847039,
+              18.507579
+            ],
+            [
+              73.84706,
+              18.51237
+            ],
+            [
+              73.842975,
+              18.514571
+            ],
+            [
+              73.838869,
+              18.51198
+            ],
+            [
+              73.838848,
+              18.507189
+            ],
+            [
+              73.842932,
+              18.504988
+            ],
+            [
+              73.847039,
+              18.507579
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "88608850c5fffff",
+        "resolution": 8,
+        "center_lat": 18.50978,
+        "center_lon": 73.842954,
+        "observation_count": 2,
+        "average_db": 73.6,
+        "energy_average_db": 73.7,
+        "peak_db": 74.3,
+        "min_db": 72.9,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 2
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "8860885035fffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.871747,
+              18.537496
+            ],
+            [
+              73.871769,
+              18.542287
+            ],
+            [
+              73.867682,
+              18.544488
+            ],
+            [
+              73.863574,
+              18.541897
+            ],
+            [
+              73.863552,
+              18.537106
+            ],
+            [
+              73.867639,
+              18.534905
+            ],
+            [
+              73.871747,
+              18.537496
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "8860885035fffff",
+        "resolution": 8,
+        "center_lat": 18.539697,
+        "center_lon": 73.86766,
+        "observation_count": 10,
+        "average_db": 83.4,
+        "energy_average_db": 84.2,
+        "peak_db": 86.7,
+        "min_db": 78.6,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 10
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "886088503bfffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.863488,
+              18.522732
+            ],
+            [
+              73.863509,
+              18.527523
+            ],
+            [
+              73.859423,
+              18.529724
+            ],
+            [
+              73.855316,
+              18.527133
+            ],
+            [
+              73.855295,
+              18.522342
+            ],
+            [
+              73.85938,
+              18.520141
+            ],
+            [
+              73.863488,
+              18.522732
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "886088503bfffff",
+        "resolution": 8,
+        "center_lat": 18.524933,
+        "center_lon": 73.859402,
+        "observation_count": 6,
+        "average_db": 80.2,
+        "energy_average_db": 80.5,
+        "peak_db": 82.5,
+        "min_db": 77.5,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 6
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "8860885003fffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.875747,
+              18.516127
+            ],
+            [
+              73.875769,
+              18.520919
+            ],
+            [
+              73.871682,
+              18.523121
+            ],
+            [
+              73.867574,
+              18.52053
+            ],
+            [
+              73.867552,
+              18.515738
+            ],
+            [
+              73.871639,
+              18.513537
+            ],
+            [
+              73.875747,
+              18.516127
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "8860885003fffff",
+        "resolution": 8,
+        "center_lat": 18.518329,
+        "center_lon": 73.87166,
+        "observation_count": 5,
+        "average_db": 83.0,
+        "energy_average_db": 84.1,
+        "peak_db": 87.7,
+        "min_db": 80.2,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 5
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "88608850e5fffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.85123,
+              18.529334
+            ],
+            [
+              73.851252,
+              18.534125
+            ],
+            [
+              73.847166,
+              18.536325
+            ],
+            [
+              73.843059,
+              18.533734
+            ],
+            [
+              73.843038,
+              18.528944
+            ],
+            [
+              73.847124,
+              18.526743
+            ],
+            [
+              73.85123,
+              18.529334
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "88608850e5fffff",
+        "resolution": 8,
+        "center_lat": 18.531534,
+        "center_lon": 73.847145,
+        "observation_count": 13,
+        "average_db": 74.8,
+        "energy_average_db": 75.1,
+        "peak_db": 77.6,
+        "min_db": 70.8,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 13
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "88608850c1fffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.842911,
+              18.500197
+            ],
+            [
+              73.842932,
+              18.504988
+            ],
+            [
+              73.838848,
+              18.507189
+            ],
+            [
+              73.834742,
+              18.504599
+            ],
+            [
+              73.834721,
+              18.499808
+            ],
+            [
+              73.838805,
+              18.497607
+            ],
+            [
+              73.842911,
+              18.500197
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "88608850c1fffff",
+        "resolution": 8,
+        "center_lat": 18.502398,
+        "center_lon": 73.838827,
+        "observation_count": 6,
+        "average_db": 70.2,
+        "energy_average_db": 70.3,
+        "peak_db": 71.2,
+        "min_db": 69.3,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 4,
+          "street_music": 2
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "8860885017fffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.859359,
+              18.51535
+            ],
+            [
+              73.85938,
+              18.520141
+            ],
+            [
+              73.855295,
+              18.522342
+            ],
+            [
+              73.851188,
+              18.519752
+            ],
+            [
+              73.851166,
+              18.51496
+            ],
+            [
+              73.855252,
+              18.512759
+            ],
+            [
+              73.859359,
+              18.51535
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "8860885017fffff",
+        "resolution": 8,
+        "center_lat": 18.517551,
+        "center_lon": 73.855273,
+        "observation_count": 4,
+        "average_db": 80.6,
+        "energy_average_db": 80.6,
+        "peak_db": 81.0,
+        "min_db": 80.2,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 4
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "886088500bfffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.879812,
+              18.509133
+            ],
+            [
+              73.879834,
+              18.513925
+            ],
+            [
+              73.875747,
+              18.516127
+            ],
+            [
+              73.871639,
+              18.513537
+            ],
+            [
+              73.871617,
+              18.508745
+            ],
+            [
+              73.875703,
+              18.506543
+            ],
+            [
+              73.879812,
+              18.509133
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "886088500bfffff",
+        "resolution": 8,
+        "center_lat": 18.511335,
+        "center_lon": 73.875725,
+        "observation_count": 4,
+        "average_db": 84.2,
+        "energy_average_db": 84.2,
+        "peak_db": 84.3,
+        "min_db": 84.1,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 4
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "88608850cdfffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.851103,
+              18.500586
+            ],
+            [
+              73.851124,
+              18.505377
+            ],
+            [
+              73.847039,
+              18.507579
+            ],
+            [
+              73.842932,
+              18.504988
+            ],
+            [
+              73.842911,
+              18.500197
+            ],
+            [
+              73.846996,
+              18.497995
+            ],
+            [
+              73.851103,
+              18.500586
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "88608850cdfffff",
+        "resolution": 8,
+        "center_lat": 18.502787,
+        "center_lon": 73.847017,
+        "observation_count": 4,
+        "average_db": 71.0,
+        "energy_average_db": 71.4,
+        "peak_db": 73.4,
+        "min_db": 69.1,
+        "dominant_sound_class": "street_music",
+        "sound_class_distribution": {
+          "street_music": 3,
+          "dog_bark": 1
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "8860885001fffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.883942,
+              18.516515
+            ],
+            [
+              73.883964,
+              18.521308
+            ],
+            [
+              73.879877,
+              18.52351
+            ],
+            [
+              73.875769,
+              18.520919
+            ],
+            [
+              73.875747,
+              18.516127
+            ],
+            [
+              73.879834,
+              18.513925
+            ],
+            [
+              73.883942,
+              18.516515
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "8860885001fffff",
+        "resolution": 8,
+        "center_lat": 18.518717,
+        "center_lon": 73.879855,
+        "observation_count": 4,
+        "average_db": 81.7,
+        "energy_average_db": 82.3,
+        "peak_db": 85.3,
+        "min_db": 79.3,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 4
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "8860885037fffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.863552,
+              18.537106
+            ],
+            [
+              73.863574,
+              18.541897
+            ],
+            [
+              73.859488,
+              18.544097
+            ],
+            [
+              73.85538,
+              18.541507
+            ],
+            [
+              73.855359,
+              18.536716
+            ],
+            [
+              73.859445,
+              18.534515
+            ],
+            [
+              73.863552,
+              18.537106
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "8860885037fffff",
+        "resolution": 8,
+        "center_lat": 18.539306,
+        "center_lon": 73.859466,
+        "observation_count": 2,
+        "average_db": 86.0,
+        "energy_average_db": 86.1,
+        "peak_db": 86.8,
+        "min_db": 85.3,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 2
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "88608850edfffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.855295,
+              18.522342
+            ],
+            [
+              73.855316,
+              18.527133
+            ],
+            [
+              73.85123,
+              18.529334
+            ],
+            [
+              73.847124,
+              18.526743
+            ],
+            [
+              73.847102,
+              18.521952
+            ],
+            [
+              73.851188,
+              18.519752
+            ],
+            [
+              73.855295,
+              18.522342
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "88608850edfffff",
+        "resolution": 8,
+        "center_lat": 18.524543,
+        "center_lon": 73.851209,
+        "observation_count": 4,
+        "average_db": 79.8,
+        "energy_average_db": 81.6,
+        "peak_db": 84.8,
+        "min_db": 74.9,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 4
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "886088501dfffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.871617,
+              18.508745
+            ],
+            [
+              73.871639,
+              18.513537
+            ],
+            [
+              73.867552,
+              18.515738
+            ],
+            [
+              73.863445,
+              18.513148
+            ],
+            [
+              73.863423,
+              18.508356
+            ],
+            [
+              73.867509,
+              18.506154
+            ],
+            [
+              73.871617,
+              18.508745
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "886088501dfffff",
+        "resolution": 8,
+        "center_lat": 18.510946,
+        "center_lon": 73.867531,
+        "observation_count": 2,
+        "average_db": 84.6,
+        "energy_average_db": 85.2,
+        "peak_db": 86.9,
+        "min_db": 82.2,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 2
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "8860885031fffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.867617,
+              18.530114
+            ],
+            [
+              73.867639,
+              18.534905
+            ],
+            [
+              73.863552,
+              18.537106
+            ],
+            [
+              73.859445,
+              18.534515
+            ],
+            [
+              73.859423,
+              18.529724
+            ],
+            [
+              73.863509,
+              18.527523
+            ],
+            [
+              73.867617,
+              18.530114
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "8860885031fffff",
+        "resolution": 8,
+        "center_lat": 18.532315,
+        "center_lon": 73.863531,
+        "observation_count": 2,
+        "average_db": 83.2,
+        "energy_average_db": 84.3,
+        "peak_db": 86.5,
+        "min_db": 79.8,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 2
+        },
+        "anomaly_count": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "8860885015fffff",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73.867552,
+              18.515738
+            ],
+            [
+              73.867574,
+              18.52053
+            ],
+            [
+              73.863488,
+              18.522732
+            ],
+            [
+              73.85938,
+              18.520141
+            ],
+            [
+              73.859359,
+              18.51535
+            ],
+            [
+              73.863445,
+              18.513148
+            ],
+            [
+              73.867552,
+              18.515738
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "h3_cell": "8860885015fffff",
+        "resolution": 8,
+        "center_lat": 18.51794,
+        "center_lon": 73.863466,
+        "observation_count": 2,
+        "average_db": 83.1,
+        "energy_average_db": 83.7,
+        "peak_db": 85.4,
+        "min_db": 80.8,
+        "dominant_sound_class": "dog_bark",
+        "sound_class_distribution": {
+          "dog_bark": 2
+        },
+        "anomaly_count": 0
+      }
+    }
+  ]
+}

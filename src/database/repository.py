@@ -21,6 +21,7 @@ from sqlalchemy import func, desc, and_
 
 from src.database.connection import DatabaseManager, get_db_manager
 from src.database.models import NoiseObservation
+from src.spatial.h3_grid import H3GridManager
 
 
 class ObservationRepository:
@@ -38,20 +39,24 @@ class ObservationRepository:
         elif ts is None:
             ts = datetime.now(timezone.utc)
 
+        lat = float(event["latitude"])
+        lon = float(event["longitude"])
+        h3_cell = event.get("h3_cell") or H3GridManager.lat_lng_to_cell(lat, lon)
+
         obs = NoiseObservation(
             event_id=event["event_id"],
             device_id=event["device_id"],
             device_model=event.get("device_model"),
             timestamp=ts,
-            latitude=float(event["latitude"]),
-            longitude=float(event["longitude"]),
+            latitude=lat,
+            longitude=lon,
             gps_accuracy=event.get("gps_accuracy"),
             noise_level_db=float(event["noise_level_db"]),
             sound_class=str(event["sound_class"]),
             confidence=float(event["confidence"]),
             calibration_offset=float(event.get("calibration_offset", 0.0)),
             calibrated_db=float(event["calibrated_db"]),
-            h3_cell=event.get("h3_cell"),
+            h3_cell=h3_cell,
             anomaly_score=event.get("anomaly_score"),
             audio_file=event.get("audio_file"),
         )
@@ -75,20 +80,24 @@ class ObservationRepository:
                 elif ts is None:
                     ts = datetime.now(timezone.utc)
 
+                lat = float(ev["latitude"])
+                lon = float(ev["longitude"])
+                h3_cell = ev.get("h3_cell") or H3GridManager.lat_lng_to_cell(lat, lon)
+
                 obs = NoiseObservation(
                     event_id=ev["event_id"],
                     device_id=ev["device_id"],
                     device_model=ev.get("device_model"),
                     timestamp=ts,
-                    latitude=float(ev["latitude"]),
-                    longitude=float(ev["longitude"]),
+                    latitude=lat,
+                    longitude=lon,
                     gps_accuracy=ev.get("gps_accuracy"),
                     noise_level_db=float(ev["noise_level_db"]),
                     sound_class=str(ev["sound_class"]),
                     confidence=float(ev["confidence"]),
                     calibration_offset=float(ev.get("calibration_offset", 0.0)),
                     calibrated_db=float(ev["calibrated_db"]),
-                    h3_cell=ev.get("h3_cell"),
+                    h3_cell=h3_cell,
                     anomaly_score=ev.get("anomaly_score"),
                     audio_file=ev.get("audio_file"),
                 )
@@ -327,6 +336,25 @@ class ObservationRepository:
             for r in records:
                 session.expunge(r)
             return records
+
+    # =========================================================================
+    # Query 10: Uber H3 Hexagonal Aggregations (Phase 8)
+    # =========================================================================
+    def get_h3_aggregations(
+        self,
+        resolution: Optional[int] = None,
+        limit: int = 1000,
+        anomaly_threshold: float = 2.0,
+    ) -> list[dict]:
+        """Aggregate recent observations into H3 hexagonal cells with acoustic metrics.
+
+        Returns aggregated statistics including average dB, peak dB, dominant sound class,
+        and full GeoJSON Polygon boundaries.
+        """
+        records = self.get_latest_observations(limit=limit)
+        return H3GridManager.aggregate_acoustic_observations(
+            records, resolution=resolution, anomaly_threshold=anomaly_threshold
+        )
 
     @staticmethod
     def _haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:

@@ -23,6 +23,7 @@ from src.config.settings import settings
 from src.simulation.zones import UrbanZone, haversine_distance
 from src.audio.processor import load_audio
 from src.inference.predict import SoundClassifier
+from src.spatial.h3_grid import H3GridManager
 
 
 # Representative smartphone models and typical acoustic calibration offsets
@@ -190,7 +191,7 @@ class SimulatedSensor:
             "confidence": confidence,
             "calibration_offset": round(self.calibration_offset, 2),
             "calibrated_db": calibrated_db,
-            "h3_cell": None,         # Computed in Phase 8
+            "h3_cell": H3GridManager.lat_lng_to_cell(self.lat, self.lon),
             "anomaly_score": None,   # Computed in Phase 9
         }
 
