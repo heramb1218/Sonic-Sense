@@ -100,6 +100,15 @@ class Settings:
         self.DB_ECHO: bool = os.getenv("DB_ECHO", "False").lower() in ("true", "1")
 
         # ============================================
+        # Backend Parameters (Phase 7)
+        # ============================================
+        self.BACKEND_HOST: str = os.getenv("BACKEND_HOST", "127.0.0.1")
+        self.BACKEND_PORT: int = int(os.getenv("BACKEND_PORT", "8000"))
+        self.CORS_ORIGINS: list[str] = [
+            origin.strip() for origin in os.getenv("CORS_ORIGINS", "*").split(",")
+        ]
+
+        # ============================================
         # Derived Paths
         # ============================================
         self.URBANSOUND8K_AUDIO_DIR: Path = self.URBANSOUND8K_DIR / "audio"
