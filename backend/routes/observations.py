@@ -72,6 +72,16 @@ async def create_observation(
     try:
         obs = repo.insert_observation(event)
         event_dict = obs.to_dict()
+
+        # Attach real-time anomaly severity and textual reasons for live frontend alerts
+        if "anomaly_severity" in event:
+            event_dict["anomaly_severity"] = event["anomaly_severity"]
+            event_dict["anomaly_reasons"] = event.get("anomaly_reasons", [])
+        elif obs.anomaly_score is not None:
+            eval_res = repo.anomaly_detector.evaluate_observation(obs)
+            event_dict["anomaly_severity"] = eval_res["severity"]
+            event_dict["anomaly_reasons"] = eval_res["reasons"]
+
         # Broadcast asynchronously to all connected dashboard WebSocket clients
         await ws_manager.broadcast_event(event_dict)
         return event_dict
