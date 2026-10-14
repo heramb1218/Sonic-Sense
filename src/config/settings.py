@@ -72,6 +72,14 @@ class Settings:
         self.NUM_EPOCHS: int = int(os.getenv("NUM_EPOCHS", "20"))
 
         # ============================================
+        # Simulation Parameters (Phase 4)
+        # ============================================
+        self.CITY_LAT: float = float(os.getenv("CITY_LAT", "18.5204"))
+        self.CITY_LON: float = float(os.getenv("CITY_LON", "73.8567"))
+        self.NUM_SENSORS: int = int(os.getenv("NUM_SENSORS", "5"))
+        self.SIMULATION_INTERVAL: float = float(os.getenv("SIMULATION_INTERVAL", "2.0"))
+
+        # ============================================
         # Derived Paths
         # ============================================
         self.URBANSOUND8K_AUDIO_DIR: Path = self.URBANSOUND8K_DIR / "audio"
