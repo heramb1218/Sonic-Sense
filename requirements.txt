@@ -19,6 +19,9 @@ matplotlib>=3.7.0
 # Deep Learning
 torch>=2.0.0
 
+# Streaming (Phase 5)
+kafka-python-ng>=2.2.0
+
 # Configuration
 python-dotenv>=1.0.0
 

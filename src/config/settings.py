@@ -80,6 +80,16 @@ class Settings:
         self.SIMULATION_INTERVAL: float = float(os.getenv("SIMULATION_INTERVAL", "2.0"))
 
         # ============================================
+        # Streaming Parameters (Phase 5)
+        # ============================================
+        self.KAFKA_BROKER: str = os.getenv("KAFKA_BROKER", "localhost:9092")
+        self.KAFKA_TOPIC_EVENTS: str = os.getenv("KAFKA_TOPIC_EVENTS", "urban-noise-events")
+        self.KAFKA_TOPIC_PREDICTIONS: str = os.getenv("KAFKA_TOPIC_PREDICTIONS", "urban-noise-predictions")
+        self.KAFKA_TOPIC_ANOMALIES: str = os.getenv("KAFKA_TOPIC_ANOMALIES", "urban-noise-anomalies")
+        self.KAFKA_CONSUMER_GROUP: str = os.getenv("KAFKA_CONSUMER_GROUP", "urban-noise-processor-group")
+        self.STREAMING_MODE: str = os.getenv("STREAMING_MODE", "auto")
+
+        # ============================================
         # Derived Paths
         # ============================================
         self.URBANSOUND8K_AUDIO_DIR: Path = self.URBANSOUND8K_DIR / "audio"
