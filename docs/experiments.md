@@ -29,3 +29,16 @@ This document tracks all experiments conducted during the project.
 ---
 
 *Results will be added as experiments are completed.*
+
+
+### Experiment 1: CNN Baseline Evaluation
+- **Checkpoint**: `cnn_urban_sound.pth`
+- **Test Samples**: 100
+- **Accuracy**: 20.00%
+- **Macro Precision**: 4.76%
+- **Macro Recall**: 20.00%
+- **Macro F1-Score**: 7.50%
+- **Weighted F1-Score**: 7.50%
+- **Artifacts**:
+  - Confusion Matrix: `results/confusion_matrix.png`
+  - Full Report: `results/evaluation_report.json`
