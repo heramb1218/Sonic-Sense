@@ -1,0 +1,1508 @@
+[
+  {
+    "event_id": "SIM-ANOMALY-EXPLOSION-ac575b27",
+    "timestamp": "2026-10-14 23:30:00",
+    "latitude": 18.5024,
+    "longitude": 73.8388,
+    "sound_class": "siren",
+    "confidence": 0.96,
+    "calibrated_db": 94.5,
+    "anomaly_score": 10.4,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+8.9 sigma, baseline=50.0+/-5.0 dB)",
+      "Extreme acoustic spike (94.5 dB >= 90.0 dB ceiling)",
+      "Alarming acoustic event: 'siren' (96% conf) in quiet quiet zone",
+      "Isolation Forest flagged anomaly (score: 0.63)"
+    ],
+    "z_score": 8.9,
+    "baseline_mean": 50.0,
+    "zone_type": "quiet"
+  },
+  {
+    "event_id": "SIM-ANOMALY-EXPLOSION-01",
+    "timestamp": "2026-10-14 23:30:00",
+    "latitude": 18.5024,
+    "longitude": 73.8388,
+    "sound_class": "siren",
+    "confidence": 0.96,
+    "calibrated_db": 94.5,
+    "anomaly_score": 10.4,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+8.9 sigma, baseline=50.0+/-5.0 dB)",
+      "Extreme acoustic spike (94.5 dB >= 90.0 dB ceiling)",
+      "Alarming acoustic event: 'siren' (96% conf) in quiet quiet zone",
+      "Isolation Forest flagged anomaly (score: 0.63)"
+    ],
+    "z_score": 8.9,
+    "baseline_mean": 50.0,
+    "zone_type": "quiet"
+  },
+  {
+    "event_id": "b6ed13e7-f4b3-4db9-addb-2797604cdfeb",
+    "timestamp": "2026-10-14 22:00:00",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.95,
+    "calibrated_db": 73.5,
+    "anomaly_score": 10.5,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+9.0 sigma, baseline=42.0+/-3.5 dB)",
+      "Alarming acoustic event: 'siren' (95% conf) in quiet residential zone",
+      "Nighttime residential disturbance (73.5 dB exceeds 65 dB quiet limit)",
+      "Isolation Forest flagged anomaly (score: 0.62)"
+    ],
+    "z_score": 9.0,
+    "baseline_mean": 42.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "47b3a6be-75c3-44be-8255-b34b0096a885",
+    "timestamp": "2026-10-14 18:22:07.538804",
+    "latitude": 18.523984,
+    "longitude": 73.853879,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 81.3,
+    "anomaly_score": 2.42,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.4 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.42,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "83864dc1-d8fd-4d60-abff-68b841bdfaf9",
+    "timestamp": "2026-10-14 18:22:07.411731",
+    "latitude": 18.514647,
+    "longitude": 73.872549,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 89.0,
+    "anomaly_score": 2.17,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.2 sigma, baseline=76.0+/-6.0 dB)"
+    ],
+    "z_score": 2.17,
+    "baseline_mean": 76.0,
+    "zone_type": "traffic"
+  },
+  {
+    "event_id": "418f104f-3348-4721-aa90-4909dade2aa9",
+    "timestamp": "2026-10-14 18:22:07.242323",
+    "latitude": 18.529326,
+    "longitude": 73.849992,
+    "sound_class": "dog_bark",
+    "confidence": 0.1604,
+    "calibrated_db": 74.4,
+    "anomaly_score": 4.98,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.0 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 4.98,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "1e75f2ce-12f0-46c6-af8d-eb51a006efe0",
+    "timestamp": "2026-10-14 18:22:06.768416",
+    "latitude": 18.520789,
+    "longitude": 73.858047,
+    "sound_class": "dog_bark",
+    "confidence": 0.1608,
+    "calibrated_db": 78.5,
+    "anomaly_score": 1.91,
+    "severity": "MODERATE",
+    "reasons": [],
+    "z_score": 1.91,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "48afe11a-7212-430d-ab8d-a1288967c5be",
+    "timestamp": "2026-10-14 18:22:06.404670",
+    "latitude": 18.534566,
+    "longitude": 73.845284,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 78.9,
+    "anomaly_score": 5.98,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.0 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.98,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "83ad80c4-c9dc-4e74-8eb9-b0a62af3f7bd",
+    "timestamp": "2026-10-14 18:22:05.828320",
+    "latitude": 18.523945,
+    "longitude": 73.853899,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 82.5,
+    "anomaly_score": 2.64,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.6 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.64,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "7144a4c7-5764-493f-95dd-85077aa1b5cd",
+    "timestamp": "2026-10-14 18:22:05.551759",
+    "latitude": 18.529283,
+    "longitude": 73.849954,
+    "sound_class": "dog_bark",
+    "confidence": 0.1604,
+    "calibrated_db": 75.9,
+    "anomaly_score": 5.31,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.3 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.31,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "77f05b23-e81d-47e9-9b92-891ffa6874ae",
+    "timestamp": "2026-10-14 18:22:05.410291",
+    "latitude": 18.504683,
+    "longitude": 73.8406,
+    "sound_class": "street_music",
+    "confidence": 0.1094,
+    "calibrated_db": 67.1,
+    "anomaly_score": 2.5,
+    "severity": "HIGH",
+    "reasons": [
+      "Isolation Forest flagged anomaly (score: 0.50)"
+    ],
+    "z_score": 0.35,
+    "baseline_mean": 65.0,
+    "zone_type": "quiet"
+  },
+  {
+    "event_id": "1b96baec-b440-473e-9972-89542092373e",
+    "timestamp": "2026-10-14 18:22:05.076214",
+    "latitude": 18.520797,
+    "longitude": 73.858009,
+    "sound_class": "dog_bark",
+    "confidence": 0.1609,
+    "calibrated_db": 79.5,
+    "anomaly_score": 2.09,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.1 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.09,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "13bee44d-4755-424c-aea4-3501506005ff",
+    "timestamp": "2026-10-14 18:22:04.630879",
+    "latitude": 18.534529,
+    "longitude": 73.845284,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 76.3,
+    "anomaly_score": 5.4,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.4 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.4,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "c2aff559-2162-49ba-8fac-3759d0538516",
+    "timestamp": "2026-10-14 18:20:46.976828",
+    "latitude": 18.505857,
+    "longitude": 73.845531,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 74.5,
+    "anomaly_score": 1.58,
+    "severity": "MODERATE",
+    "reasons": [],
+    "z_score": 1.58,
+    "baseline_mean": 65.0,
+    "zone_type": "quiet"
+  },
+  {
+    "event_id": "6aa73648-e16e-46a8-8da4-7eca82d5e6ef",
+    "timestamp": "2026-10-14 18:20:46.920699",
+    "latitude": 18.51983,
+    "longitude": 73.856846,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 79.7,
+    "anomaly_score": 2.13,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.1 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.13,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "e834f94b-e59c-4c46-98e6-9abd3bda4015",
+    "timestamp": "2026-10-14 18:20:46.894667",
+    "latitude": 18.510495,
+    "longitude": 73.875457,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 86.3,
+    "anomaly_score": 1.72,
+    "severity": "MODERATE",
+    "reasons": [],
+    "z_score": 1.72,
+    "baseline_mean": 76.0,
+    "zone_type": "traffic"
+  },
+  {
+    "event_id": "8ec69ada-8eec-4111-b182-4c592c94e640",
+    "timestamp": "2026-10-14 18:20:46.869560",
+    "latitude": 18.527961,
+    "longitude": 73.84996,
+    "sound_class": "dog_bark",
+    "confidence": 0.1605,
+    "calibrated_db": 75.7,
+    "anomaly_score": 5.27,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.3 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.27,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "d68d3162-f454-42eb-9982-43c07d9fc7e1",
+    "timestamp": "2026-10-14 18:20:46.842524",
+    "latitude": 18.504539,
+    "longitude": 73.84245,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 74.2,
+    "anomaly_score": 1.53,
+    "severity": "MODERATE",
+    "reasons": [],
+    "z_score": 1.53,
+    "baseline_mean": 65.0,
+    "zone_type": "quiet"
+  },
+  {
+    "event_id": "054c3fb4-f636-4686-88ea-867d22c7f1f9",
+    "timestamp": "2026-10-14 18:20:46.771955",
+    "latitude": 18.520167,
+    "longitude": 73.858948,
+    "sound_class": "dog_bark",
+    "confidence": 0.1607,
+    "calibrated_db": 83.5,
+    "anomaly_score": 2.82,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.8 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.82,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "b9345fce-522f-4b05-b79b-84a03b15fc0e",
+    "timestamp": "2026-10-14 18:20:46.691289",
+    "latitude": 18.536884,
+    "longitude": 73.846156,
+    "sound_class": "dog_bark",
+    "confidence": 0.1608,
+    "calibrated_db": 72.9,
+    "anomaly_score": 4.64,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+4.6 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 4.64,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "90a7e44e-2c91-499d-a9b4-cb322d730cb9",
+    "timestamp": "2026-10-14 18:20:46.642118",
+    "latitude": 18.50582,
+    "longitude": 73.845492,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 75.8,
+    "anomaly_score": 1.8,
+    "severity": "MODERATE",
+    "reasons": [],
+    "z_score": 1.8,
+    "baseline_mean": 65.0,
+    "zone_type": "quiet"
+  },
+  {
+    "event_id": "23a3e241-898e-4aa7-9407-2cbefbae18e5",
+    "timestamp": "2026-10-14 18:20:46.539527",
+    "latitude": 18.51987,
+    "longitude": 73.856896,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 78.0,
+    "anomaly_score": 1.82,
+    "severity": "MODERATE",
+    "reasons": [],
+    "z_score": 1.82,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "3dfa4c25-5218-44ea-9f0a-39bfed1b1edd",
+    "timestamp": "2026-10-14 18:20:46.415674",
+    "latitude": 18.527993,
+    "longitude": 73.849988,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 78.6,
+    "anomaly_score": 5.91,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.9 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.91,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "26cb6128-720e-4743-83fb-56d1b07e1b0b",
+    "timestamp": "2026-10-14 18:20:46.321864",
+    "latitude": 18.520166,
+    "longitude": 73.858975,
+    "sound_class": "dog_bark",
+    "confidence": 0.1608,
+    "calibrated_db": 79.9,
+    "anomaly_score": 2.16,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.2 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.16,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "47db7630-7d2f-4def-836f-d6133fcc3fa0",
+    "timestamp": "2026-10-14 18:20:46.192892",
+    "latitude": 18.536904,
+    "longitude": 73.846094,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 72.5,
+    "anomaly_score": 4.56,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+4.6 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 4.56,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "7b8aceba-aaff-4054-8f71-83d7d3f86b0b",
+    "timestamp": "2026-10-14 18:14:25.070883",
+    "latitude": 40.73061,
+    "longitude": -73.935242,
+    "sound_class": "drilling",
+    "confidence": 0.88,
+    "calibrated_db": 72.0,
+    "anomaly_score": 4.44,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+4.4 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 4.44,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "fb8a7e77-3107-4372-a735-156e901ef79e",
+    "timestamp": "2026-10-14 18:14:18.571505",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "12b57c20-c595-49e6-adb6-3ce8605be83c",
+    "timestamp": "2026-10-14 18:14:18.496793",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "059a80db-e232-4daf-bfc5-54aa5acfbcab",
+    "timestamp": "2026-10-14 18:14:18.426692",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "03f4c93d-4a57-406a-ac36-a0a1e97ea7f1",
+    "timestamp": "2026-10-14 18:14:18.190741",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "4765af38-f619-45e5-85e2-c2fc8d6af17e",
+    "timestamp": "2026-10-14 18:14:05.958928",
+    "latitude": 40.73061,
+    "longitude": -73.935242,
+    "sound_class": "drilling",
+    "confidence": 0.88,
+    "calibrated_db": 72.0,
+    "anomaly_score": 4.44,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+4.4 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 4.44,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "a4306626-1668-4608-81ef-b54c107bf444",
+    "timestamp": "2026-10-14 18:13:56.194532",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "61b1eb9a-be15-4c6d-9522-0170321c3f3e",
+    "timestamp": "2026-10-14 18:13:56.141169",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "3c433a91-b189-4fa2-aec0-9b9dcdf7ccd6",
+    "timestamp": "2026-10-14 18:13:56.127925",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "d5d447f5-48a8-4349-8d6a-1c0ae6b975c9",
+    "timestamp": "2026-10-14 18:13:56.102081",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "5e27178f-3d76-42cb-bd38-d41823f2d816",
+    "timestamp": "2026-10-14 18:13:35.576425",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "8fea71e5-9b06-4f6b-924e-834dde7f543b",
+    "timestamp": "2026-10-14 18:13:35.066550",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "97f13a7f-c976-4d65-8e4c-e16cd6c5ab03",
+    "timestamp": "2026-10-14 18:13:35.053056",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "437ca452-5af5-4787-b78e-ef4c9a4b11be",
+    "timestamp": "2026-10-14 18:13:35.028049",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "c4e1b184-474b-44be-98f1-550f067a60c3",
+    "timestamp": "2026-10-14 18:13:25.128464",
+    "latitude": 40.73061,
+    "longitude": -73.935242,
+    "sound_class": "drilling",
+    "confidence": 0.88,
+    "calibrated_db": 72.0,
+    "anomaly_score": 4.44,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+4.4 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 4.44,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "c001ac69-6ffb-43d3-b54b-d9d6f2da105c",
+    "timestamp": "2026-10-14 18:12:25.192176",
+    "latitude": 18.526685,
+    "longitude": 73.857044,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 82.5,
+    "anomaly_score": 2.64,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.6 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.64,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "af9448be-5691-4fc9-9803-8d3c6addca35",
+    "timestamp": "2026-10-14 18:12:25.080306",
+    "latitude": 18.532963,
+    "longitude": 73.848692,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 77.2,
+    "anomaly_score": 5.6,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.6 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.6,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "dd3afcc4-c78d-4ff7-93b6-6433a090a92d",
+    "timestamp": "2026-10-14 18:12:24.891348",
+    "latitude": 18.515539,
+    "longitude": 73.854266,
+    "sound_class": "dog_bark",
+    "confidence": 0.1605,
+    "calibrated_db": 81.0,
+    "anomaly_score": 2.36,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.4 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.36,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "84b987c1-f46d-4880-832c-f00188310029",
+    "timestamp": "2026-10-14 18:12:24.766016",
+    "latitude": 18.5295,
+    "longitude": 73.851083,
+    "sound_class": "dog_bark",
+    "confidence": 0.1606,
+    "calibrated_db": 75.0,
+    "anomaly_score": 5.11,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.1 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.11,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "3b40184a-ac6c-4f34-9ee4-683c8b2842ca",
+    "timestamp": "2026-10-14 18:12:24.492774",
+    "latitude": 18.522778,
+    "longitude": 73.856185,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 81.0,
+    "anomaly_score": 2.36,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.4 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.36,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "a061beb2-f115-4481-8c0a-4209f70238ac",
+    "timestamp": "2026-10-14 18:12:24.354514",
+    "latitude": 18.532274,
+    "longitude": 73.849942,
+    "sound_class": "dog_bark",
+    "confidence": 0.1606,
+    "calibrated_db": 75.5,
+    "anomaly_score": 5.22,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.2 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.22,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "1d075e5e-9a17-4874-8890-3da38fc41367",
+    "timestamp": "2026-10-14 18:12:24.275731",
+    "latitude": 18.507609,
+    "longitude": 73.846389,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 74.3,
+    "anomaly_score": 1.55,
+    "severity": "MODERATE",
+    "reasons": [],
+    "z_score": 1.55,
+    "baseline_mean": 65.0,
+    "zone_type": "quiet"
+  },
+  {
+    "event_id": "f5db5685-89e0-4d8f-af44-8884a3e2db30",
+    "timestamp": "2026-10-14 18:12:24.144703",
+    "latitude": 18.526681,
+    "longitude": 73.857009,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 79.5,
+    "anomaly_score": 2.09,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.1 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.09,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "fbe1ebe9-f674-4970-b4e0-36264c7414da",
+    "timestamp": "2026-10-14 18:12:24.002634",
+    "latitude": 18.532919,
+    "longitude": 73.848739,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 75.5,
+    "anomaly_score": 5.22,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.2 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.22,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "0a72e26a-e128-438b-b198-735939100ab1",
+    "timestamp": "2026-10-14 18:12:23.689135",
+    "latitude": 18.515487,
+    "longitude": 73.854263,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 80.5,
+    "anomaly_score": 2.27,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.3 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.27,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "3cb34450-1e70-4bb6-ad5b-b2a5a20d1430",
+    "timestamp": "2026-10-14 18:12:23.529360",
+    "latitude": 18.529534,
+    "longitude": 73.851056,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 75.2,
+    "anomaly_score": 5.16,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.2 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.16,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "2581b3f8-7e9f-4172-9850-63e1cd528f44",
+    "timestamp": "2026-10-14 18:12:23.311369",
+    "latitude": 18.522788,
+    "longitude": 73.856136,
+    "sound_class": "dog_bark",
+    "confidence": 0.1612,
+    "calibrated_db": 80.8,
+    "anomaly_score": 2.33,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.3 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.33,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "bdecdd2a-8dd4-4156-a845-56c217dc6c6c",
+    "timestamp": "2026-10-14 18:12:23.099191",
+    "latitude": 18.532283,
+    "longitude": 73.849977,
+    "sound_class": "dog_bark",
+    "confidence": 0.1608,
+    "calibrated_db": 75.0,
+    "anomaly_score": 5.11,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.1 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.11,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "db37ce99-95ba-47ed-8667-1fba9267fb94",
+    "timestamp": "2026-10-14 18:11:58.223300",
+    "latitude": 18.526486,
+    "longitude": 73.857856,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 77.5,
+    "anomaly_score": 1.73,
+    "severity": "MODERATE",
+    "reasons": [],
+    "z_score": 1.73,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "b18f34db-d619-4d5e-b18f-f8710a4a546f",
+    "timestamp": "2026-10-14 18:11:57.926947",
+    "latitude": 18.531098,
+    "longitude": 73.847248,
+    "sound_class": "dog_bark",
+    "confidence": 0.1608,
+    "calibrated_db": 75.8,
+    "anomaly_score": 5.29,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.3 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.29,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "5c51a5ed-597f-4f52-96d9-56dd10c8db82",
+    "timestamp": "2026-10-14 18:11:57.489111",
+    "latitude": 18.521915,
+    "longitude": 73.852581,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 84.8,
+    "anomaly_score": 3.05,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+3.0 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 3.05,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "4e0f8863-78fb-443a-a639-afa6b225faf5",
+    "timestamp": "2026-10-14 18:11:57.230625",
+    "latitude": 18.527281,
+    "longitude": 73.850426,
+    "sound_class": "dog_bark",
+    "confidence": 0.1607,
+    "calibrated_db": 74.9,
+    "anomaly_score": 5.09,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.1 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.09,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "a16a3d9a-15c4-4d8f-bab0-172021302b0b",
+    "timestamp": "2026-10-14 18:11:56.791266",
+    "latitude": 18.515387,
+    "longitude": 73.8579,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 80.2,
+    "anomaly_score": 2.22,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.2 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.22,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "628820da-322f-4f31-b7af-9ad387d3a469",
+    "timestamp": "2026-10-14 18:11:56.508761",
+    "latitude": 18.531921,
+    "longitude": 73.846071,
+    "sound_class": "dog_bark",
+    "confidence": 0.1608,
+    "calibrated_db": 74.5,
+    "anomaly_score": 5.0,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.0 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.0,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "65a6ad97-ef3f-4862-aacd-5b24f6ddcfa6",
+    "timestamp": "2026-10-14 18:11:56.155924",
+    "latitude": 18.526477,
+    "longitude": 73.857821,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 80.2,
+    "anomaly_score": 2.22,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.2 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.22,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "be67710a-1dbe-4cd0-811d-bbffad8344bd",
+    "timestamp": "2026-10-14 18:11:55.857429",
+    "latitude": 18.531098,
+    "longitude": 73.847217,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 77.6,
+    "anomaly_score": 5.69,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.7 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.69,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "1bd69d46-1ee4-4962-9ccc-96c6c7427cc7",
+    "timestamp": "2026-10-14 18:11:55.428906",
+    "latitude": 18.521957,
+    "longitude": 73.852588,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 83.0,
+    "anomaly_score": 2.73,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.7 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.73,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "28e080a1-bd23-4cd5-90d8-40690ebbcb2a",
+    "timestamp": "2026-10-14 18:11:55.244369",
+    "latitude": 18.519901,
+    "longitude": 73.875979,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 85.3,
+    "anomaly_score": 1.55,
+    "severity": "MODERATE",
+    "reasons": [],
+    "z_score": 1.55,
+    "baseline_mean": 76.0,
+    "zone_type": "traffic"
+  },
+  {
+    "event_id": "9fb2fc33-ef7d-4825-bf7c-05f977c5ddfd",
+    "timestamp": "2026-10-14 18:11:55.063851",
+    "latitude": 18.527256,
+    "longitude": 73.850434,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 76.5,
+    "anomaly_score": 5.44,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+5.4 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 5.44,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "0cc145b3-7f14-40b3-942a-24a24f2fc5fc",
+    "timestamp": "2026-10-14 18:11:54.607544",
+    "latitude": 18.515372,
+    "longitude": 73.857952,
+    "sound_class": "dog_bark",
+    "confidence": 0.1605,
+    "calibrated_db": 80.7,
+    "anomaly_score": 2.31,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.3 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.31,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "9856b479-382e-4267-80e1-5d8cadfebfe2",
+    "timestamp": "2026-10-14 18:11:54.474589",
+    "latitude": 18.514182,
+    "longitude": 73.868909,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 86.9,
+    "anomaly_score": 1.82,
+    "severity": "MODERATE",
+    "reasons": [],
+    "z_score": 1.82,
+    "baseline_mean": 76.0,
+    "zone_type": "traffic"
+  },
+  {
+    "event_id": "0807a108-bdfe-4300-8f51-db7aff16b8e7",
+    "timestamp": "2026-10-14 18:11:54.400063",
+    "latitude": 18.531922,
+    "longitude": 73.846098,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 73.8,
+    "anomaly_score": 4.84,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+4.8 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 4.84,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "9a642d4b-32e1-462e-ab91-2eb5c3571796",
+    "timestamp": "2026-10-14 18:00:19.165944",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "53379cab-31bb-44de-b913-b35acff6de95",
+    "timestamp": "2026-10-14 18:00:19.111178",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "5ba22577-9d4c-4b64-8c00-7770aa535c09",
+    "timestamp": "2026-10-14 18:00:19.095964",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "8559ed14-cf15-444e-9c9d-2aa2a1bf2047",
+    "timestamp": "2026-10-14 18:00:19.031906",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "18790fb8-67c1-4b36-8f01-601fe9f52f7e",
+    "timestamp": "2026-10-14 17:59:38.378090",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "5a06d7c6-c33f-439d-903a-5d378a8dfa96",
+    "timestamp": "2026-10-14 17:59:38.330783",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "8c85ebe0-5a3e-4a06-9ee9-46c6dd3cfacd",
+    "timestamp": "2026-10-14 17:59:38.312606",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "0f7e8354-d114-48b0-a2d3-ad583c809afe",
+    "timestamp": "2026-10-14 17:59:38.208032",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "0cc57628-b25c-41c2-b66f-6d5e5b180f00",
+    "timestamp": "2026-10-14 17:59:10.849414",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "c8a460ed-84f4-4863-9563-264428e23441",
+    "timestamp": "2026-10-14 17:59:10.799372",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "52af7eac-1c26-4b7e-b9b6-c3c63424de08",
+    "timestamp": "2026-10-14 17:59:10.785988",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "777cea9b-bcd3-40fc-912c-8cd7b35312a1",
+    "timestamp": "2026-10-14 17:59:10.760834",
+    "latitude": 40.7128,
+    "longitude": -74.006,
+    "sound_class": "siren",
+    "confidence": 0.94,
+    "calibrated_db": 80.5,
+    "anomaly_score": 6.83,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+6.3 sigma, baseline=52.0+/-4.5 dB)",
+      "Alarming acoustic event: 'siren' (94% conf) in quiet residential zone"
+    ],
+    "z_score": 6.33,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "baecfcfd-d1ff-45ef-9ceb-d849be794515",
+    "timestamp": "2026-10-14 16:56:45.937733",
+    "latitude": 18.518247,
+    "longitude": 73.869594,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 85.0,
+    "anomaly_score": 1.5,
+    "severity": "MODERATE",
+    "reasons": [],
+    "z_score": 1.5,
+    "baseline_mean": 76.0,
+    "zone_type": "traffic"
+  },
+  {
+    "event_id": "33d9ea96-219a-46fd-82a7-18ab03243b6f",
+    "timestamp": "2026-10-14 16:56:45.898994",
+    "latitude": 18.533766,
+    "longitude": 73.844562,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 74.0,
+    "anomaly_score": 4.89,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+4.9 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 4.89,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "5662d4af-4727-486d-a08f-3d8f07c09065",
+    "timestamp": "2026-10-14 16:56:45.832544",
+    "latitude": 18.534928,
+    "longitude": 73.865651,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 86.5,
+    "anomaly_score": 2.5,
+    "severity": "HIGH",
+    "reasons": [
+      "Isolation Forest flagged anomaly (score: 0.50)"
+    ],
+    "z_score": 0.64,
+    "baseline_mean": 82.0,
+    "zone_type": "construction"
+  },
+  {
+    "event_id": "59105212-28df-40f4-bef2-bab2f05205f7",
+    "timestamp": "2026-10-14 16:56:45.792263",
+    "latitude": 18.519361,
+    "longitude": 73.862865,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 80.8,
+    "anomaly_score": 2.33,
+    "severity": "HIGH",
+    "reasons": [
+      "Elevated noise level (z=+2.3 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 2.33,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "0bbd577b-e7b4-4107-b788-d4d41fa83489",
+    "timestamp": "2026-10-14 16:56:45.762786",
+    "latitude": 18.518224,
+    "longitude": 73.869613,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 87.7,
+    "anomaly_score": 1.95,
+    "severity": "MODERATE",
+    "reasons": [],
+    "z_score": 1.95,
+    "baseline_mean": 76.0,
+    "zone_type": "traffic"
+  },
+  {
+    "event_id": "12c5a338-1dc5-439d-b60e-2021444b5e06",
+    "timestamp": "2026-10-14 16:56:45.735037",
+    "latitude": 18.533763,
+    "longitude": 73.844615,
+    "sound_class": "dog_bark",
+    "confidence": 0.1606,
+    "calibrated_db": 71.9,
+    "anomaly_score": 4.92,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+4.4 sigma, baseline=52.0+/-4.5 dB)",
+      "Isolation Forest flagged anomaly (score: 0.50)"
+    ],
+    "z_score": 4.42,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  },
+  {
+    "event_id": "ce1bfed1-57b2-4d0a-9ae4-30c7b659fa34",
+    "timestamp": "2026-10-14 16:56:45.703333",
+    "latitude": 18.534934,
+    "longitude": 73.865594,
+    "sound_class": "dog_bark",
+    "confidence": 0.1331,
+    "calibrated_db": 79.8,
+    "anomaly_score": 2.5,
+    "severity": "HIGH",
+    "reasons": [
+      "Isolation Forest flagged anomaly (score: 0.56)"
+    ],
+    "z_score": -0.31,
+    "baseline_mean": 82.0,
+    "zone_type": "construction"
+  },
+  {
+    "event_id": "19caa8ff-b92f-4c05-9ab8-60884c55d5b2",
+    "timestamp": "2026-10-14 16:56:45.658595",
+    "latitude": 18.519385,
+    "longitude": 73.862877,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 85.4,
+    "anomaly_score": 3.16,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+3.2 sigma, baseline=68.0+/-5.5 dB)"
+    ],
+    "z_score": 3.16,
+    "baseline_mean": 68.0,
+    "zone_type": "commercial"
+  },
+  {
+    "event_id": "5754397e-76f4-415e-8a90-9dbab15ffbe5",
+    "timestamp": "2026-10-14 16:56:45.575861",
+    "latitude": 18.533775,
+    "longitude": 73.844667,
+    "sound_class": "dog_bark",
+    "confidence": 0.1971,
+    "calibrated_db": 70.8,
+    "anomaly_score": 4.18,
+    "severity": "CRITICAL",
+    "reasons": [
+      "Critical noise spike (z=+4.2 sigma, baseline=52.0+/-4.5 dB)"
+    ],
+    "z_score": 4.18,
+    "baseline_mean": 52.0,
+    "zone_type": "residential"
+  }
+]

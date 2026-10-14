@@ -13,6 +13,7 @@ import logging
 from typing import Optional, Callable, Generator
 from src.config.settings import settings
 from src.streaming.broker import BaseBroker, StreamMessage, get_broker
+from src.anomaly.detector import AcousticAnomalyDetector
 
 logger = logging.getLogger(__name__)
 
@@ -25,10 +26,12 @@ class NoiseEventConsumer:
         broker: Optional[BaseBroker] = None,
         topic: Optional[str] = None,
         group_id: Optional[str] = None,
+        anomaly_detector: Optional[AcousticAnomalyDetector] = None,
     ):
         self.broker = broker or get_broker()
         self.topic = topic or settings.KAFKA_TOPIC_EVENTS
         self.group_id = group_id or settings.KAFKA_CONSUMER_GROUP
+        self.detector = anomaly_detector or AcousticAnomalyDetector()
 
     def consume_events(
         self,
@@ -51,6 +54,12 @@ class NoiseEventConsumer:
         for msg in self.broker.consume(topic=self.topic, max_messages=max_messages, timeout=timeout):
             event = msg.value
 
+            # Automatic anomaly detection scoring (Phase 9)
+            eval_res = self.detector.evaluate_observation(event)
+            event["anomaly_score"] = eval_res["anomaly_score"]
+            event["anomaly_severity"] = eval_res["severity"]
+            event["anomaly_reasons"] = eval_res["reasons"]
+
             if verbose:
                 print(f"[CONSUMER] Event received from '{msg.topic}' (offset: {msg.offset})")
                 print(
@@ -58,6 +67,9 @@ class NoiseEventConsumer:
                     f"(conf: {event.get('confidence', 0)*100:0.1f}%) | "
                     f"Noise: {event.get('calibrated_db', 0):0.1f} dB"
                 )
+                if eval_res["is_anomaly"]:
+                    reasons_str = "; ".join(eval_res["reasons"])
+                    print(f"[ANOMALY] Alert: {eval_res['severity']} anomaly detected! Score: {eval_res['anomaly_score']} | {reasons_str}")
 
             if callback is not None:
                 callback(event)

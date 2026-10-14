@@ -22,6 +22,7 @@ from sqlalchemy import func, desc, and_
 from src.database.connection import DatabaseManager, get_db_manager
 from src.database.models import NoiseObservation
 from src.spatial.h3_grid import H3GridManager
+from src.anomaly.detector import AcousticAnomalyDetector
 
 
 class ObservationRepository:
@@ -29,6 +30,7 @@ class ObservationRepository:
 
     def __init__(self, db_manager: Optional[DatabaseManager] = None):
         self.db = db_manager or get_db_manager()
+        self.anomaly_detector = AcousticAnomalyDetector()
 
     def insert_observation(self, event: dict) -> NoiseObservation:
         """Insert a single acoustic event record."""
@@ -42,6 +44,11 @@ class ObservationRepository:
         lat = float(event["latitude"])
         lon = float(event["longitude"])
         h3_cell = event.get("h3_cell") or H3GridManager.lat_lng_to_cell(lat, lon)
+
+        anomaly_score = event.get("anomaly_score")
+        if anomaly_score is None:
+            eval_res = self.anomaly_detector.evaluate_observation(event)
+            anomaly_score = eval_res["anomaly_score"]
 
         obs = NoiseObservation(
             event_id=event["event_id"],
@@ -57,7 +64,7 @@ class ObservationRepository:
             calibration_offset=float(event.get("calibration_offset", 0.0)),
             calibrated_db=float(event["calibrated_db"]),
             h3_cell=h3_cell,
-            anomaly_score=event.get("anomaly_score"),
+            anomaly_score=float(anomaly_score),
             audio_file=event.get("audio_file"),
         )
 
@@ -84,6 +91,11 @@ class ObservationRepository:
                 lon = float(ev["longitude"])
                 h3_cell = ev.get("h3_cell") or H3GridManager.lat_lng_to_cell(lat, lon)
 
+                anomaly_score = ev.get("anomaly_score")
+                if anomaly_score is None:
+                    eval_res = self.anomaly_detector.evaluate_observation(ev)
+                    anomaly_score = eval_res["anomaly_score"]
+
                 obs = NoiseObservation(
                     event_id=ev["event_id"],
                     device_id=ev["device_id"],
@@ -98,7 +110,7 @@ class ObservationRepository:
                     calibration_offset=float(ev.get("calibration_offset", 0.0)),
                     calibrated_db=float(ev["calibrated_db"]),
                     h3_cell=h3_cell,
-                    anomaly_score=ev.get("anomaly_score"),
+                    anomaly_score=float(anomaly_score),
                     audio_file=ev.get("audio_file"),
                 )
                 session.add(obs)
