@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-10-14T18:42:45.902019+00:00",
+  "passed_stages": 9,
+  "total_stages": 9,
+  "total_latency_ms": 4384.77,
+  "stages": [
+    {
+      "stage": 1,
+      "name": "Audio Preprocessing & Log-Mel Extraction",
+      "passed": true,
+      "latency_ms": 937.45,
+      "details": "Sample rate: 22050 Hz, Shape: (128, 173), Range: [-61.4, 0.0] dB"
+    },
+    {
+      "stage": 2,
+      "name": "Deep Learning Sound Classification",
+      "passed": true,
+      "latency_ms": 393.15,
+      "details": "Predicted: 'dog_bark' (19.7% confidence)"
+    },
+    {
+      "stage": 3,
+      "name": "Sensor Hardware Calibration & Mobility",
+      "passed": true,
+      "latency_ms": 214.08,
+      "details": "Node at (18.5204, 73.8567), Calibrated dB: 76.2"
+    },
+    {
+      "stage": 4,
+      "name": "Message Broker Stream Publication",
+      "passed": true,
+      "latency_ms": 0.1,
+      "details": "Topic: 'audit-stream-1ed5b6', Broker Offset: 1"
+    },
+    {
+      "stage": 5,
+      "name": "Stream Consumer Ingestion & FIFO Ordering",
+      "passed": true,
+      "latency_ms": 0.24,
+      "details": "Consumed event ID: 385ac08e-0911-42f1-9d47-016d18b20f50"
+    },
+    {
+      "stage": 6,
+      "name": "Multi-Factor Acoustic Anomaly Detection",
+      "passed": true,
+      "latency_ms": 0.06,
+      "details": "Severity: NORMAL, Score: 1.49, Reasons: 0"
+    },
+    {
+      "stage": 7,
+      "name": "Spatial-Temporal Database Persistence",
+      "passed": true,
+      "latency_ms": 131.37,
+      "details": "Dialect: SQLITE, Saved Record ID: 204"
+    },
+    {
+      "stage": 8,
+      "name": "Uber H3 Hexagonal Spatial Aggregation",
+      "passed": true,
+      "latency_ms": 0.23,
+      "details": "Cells: 3, GeoJSON features: 3"
+    },
+    {
+      "stage": 9,
+      "name": "REST API & Real-Time WebSocket Delivery",
+      "passed": true,
+      "latency_ms": 78.04,
+      "details": "POST HTTP 201, WebSocket received broadcast matching event_id"
+    }
+  ]
+}
