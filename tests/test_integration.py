@@ -14,6 +14,7 @@ Comprehensive verification of the unified pipeline across all 9 subsystems:
 """
 
 import uuid
+from datetime import datetime, timezone
 from pathlib import Path
 import pytest
 import numpy as np
@@ -209,7 +210,7 @@ class TestEndToEndSystemIntegration:
             "event_id": event_id,
             "device_id": "SENSOR-REST-WS-01",
             "device_model": "OnePlus 11",
-            "timestamp": "2026-10-15T00:01:00Z",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "latitude": 18.5250,
             "longitude": 73.8550,
             "gps_accuracy": 3.5,

@@ -3,7 +3,7 @@
  */
 
 import { apiClient } from './api.js';
-import { AcousticMapManager } from './map.js';
+import { AcousticMapManager } from './map.js?v=2';
 import { AcousticChartsManager } from './charts.js';
 import { AcousticWebSocketClient } from './websocket.js';
 

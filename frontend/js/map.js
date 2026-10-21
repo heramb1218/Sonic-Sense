@@ -28,11 +28,10 @@ export class AcousticMapManager {
     // Zoom control at bottom right
     L.control.zoom({ position: 'bottomright' }).addTo(this.map);
 
-    // 2. Add CartoDB Dark Matter Base Tiles
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-      subdomains: 'abcd',
-      maxZoom: 19,
+    // 2. Add Esri Dark Gray Canvas Base Tiles (Free, no API key required)
+    L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri, DeLorme, NAVTEQ &copy; OpenStreetMap contributors',
+      maxZoom: 16,
     }).addTo(this.map);
 
     // 3. Initialize Layer Groups
