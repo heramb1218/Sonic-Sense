@@ -11,17 +11,12 @@ from datetime import datetime
 from typing import Optional
 from fastapi import APIRouter, Depends, Query, HTTPException, status
 
-from src.database.connection import get_db_manager
 from src.database.repository import ObservationRepository
-from backend.schemas.observation import ObservationResponse
+from backend.dependencies import get_repository
+from backend.schemas.observation import ObservationCreate, ObservationResponse
 from backend.websocket.connection_manager import ws_manager
 
 router = APIRouter(prefix="/observations", tags=["Observations"])
-
-
-def get_repository() -> ObservationRepository:
-    """Dependency injection for ObservationRepository."""
-    return ObservationRepository(db_manager=get_db_manager())
 
 
 @router.get("", response_model=list[ObservationResponse])
@@ -65,26 +60,27 @@ def get_latest_observations(
 
 @router.post("", response_model=ObservationResponse, status_code=status.HTTP_201_CREATED)
 async def create_observation(
-    event: dict,
+    event: ObservationCreate,
     repo: ObservationRepository = Depends(get_repository),
 ):
     """Ingest a new observation, persist to database, and broadcast via WebSocket."""
     try:
-        obs = repo.insert_observation(event)
-        event_dict = obs.to_dict()
+        event_dict = event.model_dump()
+        obs = repo.insert_observation(event_dict)
+        response_dict = obs.to_dict()
 
         # Attach real-time anomaly severity and textual reasons for live frontend alerts
-        if "anomaly_severity" in event:
-            event_dict["anomaly_severity"] = event["anomaly_severity"]
-            event_dict["anomaly_reasons"] = event.get("anomaly_reasons", [])
+        if event.anomaly_severity:
+            response_dict["anomaly_severity"] = event.anomaly_severity
+            response_dict["anomaly_reasons"] = event.anomaly_reasons or []
         elif obs.anomaly_score is not None:
             eval_res = repo.anomaly_detector.evaluate_observation(obs)
-            event_dict["anomaly_severity"] = eval_res["severity"]
-            event_dict["anomaly_reasons"] = eval_res["reasons"]
+            response_dict["anomaly_severity"] = eval_res["severity"]
+            response_dict["anomaly_reasons"] = eval_res["reasons"]
 
         # Broadcast asynchronously to all connected dashboard WebSocket clients
-        await ws_manager.broadcast_event(event_dict)
-        return event_dict
+        await ws_manager.broadcast_event(response_dict)
+        return response_dict
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

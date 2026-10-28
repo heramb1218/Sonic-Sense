@@ -52,7 +52,7 @@ def update_experiments_log(metrics: dict, model_path: Path) -> None:
     overall = metrics["overall"]
 
     entry = f"""
-### Experiment 1: CNN Baseline Evaluation
+### Experiment Evaluation
 - **Checkpoint**: `{model_path.name}`
 - **Test Samples**: {overall['total_samples']}
 - **Accuracy**: {overall['accuracy'] * 100:.2f}%
@@ -65,7 +65,7 @@ def update_experiments_log(metrics: dict, model_path: Path) -> None:
   - Full Report: `results/evaluation_report.json`
 """
 
-    if "### Experiment 1: CNN Baseline Evaluation" not in content:
+    if entry.strip() not in content:
         updated_content = content + "\n" + entry
         exp_file.write_text(updated_content, encoding="utf-8")
         logger.info(f"Updated experiment log: {exp_file}")
@@ -78,27 +78,67 @@ def main():
     parser.add_argument("--synthetic", action="store_true", help="Force synthetic test dataset for rapid testing")
     parser.add_argument("--test-size", type=int, default=100, help="Size of synthetic test set")
     parser.add_argument("--batch-size", type=int, default=32, help="Evaluation batch size")
+    parser.add_argument("--device", type=str, default="auto", choices=["auto", "cuda", "cpu"], help="Evaluation hardware")
     args = parser.parse_args()
 
     model_path = Path(args.model)
     if not model_path.exists():
-        print(f"[ERROR] Checkpoint not found: {model_path}")
+        print(f"[ERROR] Checkpoint not found at: {model_path}")
         print("Please train a model first using `python scripts/train_cnn.py`.")
         sys.exit(1)
 
     print("=" * 65)
-    print("PHASE 3: ACOUSTIC CLASSIFICATION MODEL EVALUATION")
+    print("ACOUSTIC CLASSIFICATION MODEL EVALUATION (Phase 2 & 3)")
     print("=" * 65)
     print(f"  Model Checkpoint: {model_path}")
     print(f"  Test Split:       {'Synthetic (' + str(args.test_size) + ' samples)' if args.synthetic else 'Fold ' + str(args.fold)}")
     print("-" * 65)
 
-    # 1. Load Model
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # 1. Load Model with metadata verification
+    if args.device == "auto":
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    else:
+        device = torch.device(args.device)
+
     model = UrbanSoundCNN(num_classes=settings.NUM_CLASSES)
-    checkpoint = torch.load(str(model_path), map_location=device)
-    state_dict = checkpoint.get("model_state_dict", checkpoint)
-    model.load_state_dict(state_dict)
+    try:
+        checkpoint = torch.load(str(model_path), map_location=device, weights_only=False)
+    except Exception as e:
+        print(f"[ERROR] Failed to load checkpoint: {e}")
+        sys.exit(1)
+
+    if isinstance(checkpoint, dict):
+        arch = checkpoint.get("architecture")
+        if arch is not None and arch != "UrbanSoundCNN":
+            print(f"[ERROR] Incompatible architecture in checkpoint: '{arch}'. Expected 'UrbanSoundCNN'.")
+            sys.exit(1)
+        num_cls = checkpoint.get("num_classes")
+        if num_cls is not None and num_cls != settings.NUM_CLASSES:
+            print(f"[ERROR] Incompatible number of classes in checkpoint: {num_cls}. Expected {settings.NUM_CLASSES}.")
+            sys.exit(1)
+        
+        # Provenance check and diagnostics
+        is_synth = checkpoint.get("is_synthetic", False)
+        data_type = checkpoint.get("training_data_type", "unverified")
+        if is_synth or data_type == "synthetic":
+            print("[WARNING] Checkpoint provenance: SYNTHETIC (smoke/development model).")
+            print("          This model was NOT trained on real UrbanSound8K audio.")
+        elif data_type == "urbansound8k":
+            print("[INFO] Checkpoint provenance: VERIFIED UrbanSound8K trained model.")
+        else:
+            print("[WARNING] Checkpoint provenance: UNVERIFIED / LEGACY (missing training_data_type metadata).")
+
+        state_dict = checkpoint.get("model_state_dict", checkpoint)
+    else:
+        print("[WARNING] Checkpoint provenance: RAW STATE_DICT (no training metadata).")
+        state_dict = checkpoint
+
+    try:
+        model.load_state_dict(state_dict)
+    except Exception as e:
+        print(f"[ERROR] Failed to load model weights: {e}")
+        sys.exit(1)
+
     model.to(device)
     model.eval()
 
@@ -106,12 +146,24 @@ def main():
     if args.synthetic:
         test_ds = UrbanSoundDataset(is_training=False, synthetic_size=args.test_size)
     else:
-        test_ds = UrbanSoundDataset(folds=[args.fold], is_training=False)
+        metadata_file = settings.URBANSOUND8K_METADATA
+        audio_folder = settings.URBANSOUND8K_AUDIO_DIR
+        if not metadata_file.exists() or not audio_folder.exists():
+            print("[ERROR] UrbanSound8K dataset not found at expected location:")
+            print(f"        {settings.URBANSOUND8K_DIR}")
+            print("To evaluate on synthetic test data for verification, pass `--synthetic --test-size 100`.")
+            sys.exit(1)
+
+        try:
+            test_ds = UrbanSoundDataset(folds=[args.fold], is_training=False)
+        except Exception as e:
+            print(f"[ERROR] Failed to load test fold {args.fold}: {e}")
+            sys.exit(1)
 
     test_loader = DataLoader(test_ds, batch_size=args.batch_size, shuffle=False)
 
     # 3. Compute Metrics & Error Analysis
-    print("[INFO] Computing predictions across test dataset...")
+    print(f"[INFO] Computing predictions across {len(test_ds)} test samples on {device}...")
     metrics = evaluate_model_on_dataset(
         model=model,
         dataloader=test_loader,

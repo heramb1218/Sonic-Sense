@@ -5,22 +5,65 @@ Provides:
 - train_one_epoch: executes single training epoch with CrossEntropyLoss and Adam/AdamW
 - validate: calculates loss, top-1 accuracy, and returns predictions & ground truth
 - train_model: complete training loop with model checkpointing and history tracking
+- calculate_class_weights: handles dataset class imbalance via inverse frequency weighting
 
 Usage:
     from src.training.trainer import train_model
     history = train_model(model, train_loader, val_loader, num_epochs=15, save_path="models/cnn_urban_sound.pth")
 """
 
+from datetime import datetime, timezone
 import logging
 from pathlib import Path
 from typing import Optional, Any
+from collections import Counter
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Dataset
 
 from src.config.settings import settings
 
 logger = logging.getLogger(__name__)
+
+
+def calculate_class_weights(dataset: Any, num_classes: int = 10) -> torch.Tensor:
+    """Calculate balanced inverse class frequency weights to handle dataset imbalance.
+
+    Weight for class c: w_c = N / (K * N_c)
+    where N is total samples, K is number of classes, and N_c is count of class c.
+
+    Args:
+        dataset: PyTorch Dataset (having .samples attribute or iterable).
+        num_classes: Number of distinct classes.
+
+    Returns:
+        torch.FloatTensor of shape (num_classes,) with normalized weights.
+    """
+    counts = Counter()
+    if hasattr(dataset, "samples"):
+        for item in dataset.samples:
+            counts[item["class_id"]] += 1
+    else:
+        # Fallback inspection of targets
+        for _, label in dataset:
+            cid = label.item() if isinstance(label, torch.Tensor) else int(label)
+            counts[cid] += 1
+
+    total_samples = sum(counts.values()) if counts else 1
+    weights = torch.ones(num_classes, dtype=torch.float32)
+
+    if total_samples > 0:
+        for cid in range(num_classes):
+            c_count = counts.get(cid, 0)
+            if c_count > 0:
+                weights[cid] = total_samples / (num_classes * c_count)
+            else:
+                weights[cid] = 1.0
+
+        # Normalize weights so mean is 1.0
+        weights = weights / weights.mean()
+
+    return weights
 
 
 def train_one_epoch(
@@ -106,11 +149,15 @@ def train_model(
     num_epochs: int = 20,
     lr: float = 0.001,
     weight_decay: float = 1e-4,
+    class_weights: Optional[torch.Tensor] = None,
+    training_data_type: Optional[str] = None,
+    is_synthetic: Optional[bool] = None,
     device: Optional[torch.device] = None,
     save_path: Optional[str | Path] = None,
+    overwrite: bool = True,
     verbose: bool = True,
 ) -> dict[str, list[float]]:
-    """Complete training and validation loop with checkpointing.
+    """Complete training and validation loop with rich provenance checkpointing.
 
     Args:
         model: PyTorch model to train.
@@ -119,18 +166,45 @@ def train_model(
         num_epochs: Number of epochs to train.
         lr: Initial learning rate.
         weight_decay: L2 regularization factor.
+        class_weights: Optional class weighting tensor for CrossEntropyLoss.
+        training_data_type: Provenance string ("urbansound8k" or "synthetic").
+        is_synthetic: Boolean indicating if synthetic data was used.
         device: Device to train on (auto-detects CUDA/CPU if None).
         save_path: Path where best checkpoint .pth will be saved.
+        overwrite: Whether to permit overwriting an existing checkpoint.
         verbose: Whether to log epoch results.
 
     Returns:
         Dictionary with training history (train_loss, train_acc, val_loss, val_acc).
+
+    Raises:
+        FileExistsError: If save_path exists and overwrite is False.
     """
     if device is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+    # Resolve training data provenance
+    if is_synthetic is None:
+        is_synthetic = getattr(train_loader.dataset, "is_synthetic", False)
+    if training_data_type is None:
+        training_data_type = getattr(
+            train_loader.dataset,
+            "training_data_type",
+            "synthetic" if is_synthetic else "urbansound8k",
+        )
+    training_data_type = str(training_data_type).lower()
+
+    save_path = Path(save_path or settings.DEFAULT_MODEL_PATH)
+    if save_path.exists() and not overwrite:
+        raise FileExistsError(
+            f"Checkpoint already exists at '{save_path}'. Pass overwrite=True to allow overwriting."
+        )
+    save_path.parent.mkdir(parents=True, exist_ok=True)
+
     model.to(device)
-    criterion = nn.CrossEntropyLoss()
+
+    criterion_weights = class_weights.to(device) if class_weights is not None else None
+    criterion = nn.CrossEntropyLoss(weight=criterion_weights)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
 
     # Learning rate scheduler (reduces LR on plateau)
@@ -146,11 +220,12 @@ def train_model(
     }
 
     best_val_acc = -1.0
-    save_path = Path(save_path or settings.DEFAULT_MODEL_PATH)
-    save_path.parent.mkdir(parents=True, exist_ok=True)
 
     if verbose:
-        logger.info(f"Starting training on device: {device} | Total Epochs: {num_epochs}")
+        logger.info(
+            f"Starting training on device: {device} | Total Epochs: {num_epochs} | "
+            f"Data: {training_data_type} (is_synthetic={is_synthetic})"
+        )
 
     for epoch in range(1, num_epochs + 1):
         train_loss, train_acc = train_one_epoch(model, train_loader, criterion, optimizer, device)
@@ -181,8 +256,23 @@ def train_model(
                 "optimizer_state_dict": optimizer.state_dict(),
                 "best_val_acc": best_val_acc,
                 "val_loss": val_loss,
-                "classes": settings.URBAN_SOUND_CLASSES,
+                "architecture": "UrbanSoundCNN",
                 "num_classes": settings.NUM_CLASSES,
+                "classes": settings.URBAN_SOUND_CLASSES,
+                "input_shape": [1, settings.N_MELS, 173],
+                "preprocessing": {
+                    "sample_rate": settings.SAMPLE_RATE,
+                    "duration": settings.AUDIO_DURATION,
+                    "n_fft": settings.N_FFT,
+                    "hop_length": settings.HOP_LENGTH,
+                    "n_mels": settings.N_MELS,
+                    "ref": "np.max",
+                    "top_db": 80.0,
+                },
+                "training_data_type": training_data_type,
+                "is_synthetic": bool(is_synthetic),
+                "is_trained": not is_synthetic,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
             }
             torch.save(checkpoint, str(save_path))
             if verbose:

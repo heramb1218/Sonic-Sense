@@ -1,8 +1,8 @@
 """
-Audio Classification Inference Script — Phase 2
+Audio Classification Inference Script — Phase 2 & Phase 2.1 Provenance Safety
 
 Classifies an audio file using the trained PyTorch CNN model and
-prints predicted category, confidence, and top probabilities.
+prints predicted category, confidence, data provenance, and top probabilities.
 
 Usage:
     python scripts/predict_audio.py data/sample/sample_siren_urban.wav
@@ -27,6 +27,8 @@ def main():
                         help="Path to audio file (.wav)")
     parser.add_argument("--model", type=str, default=str(settings.DEFAULT_MODEL_PATH),
                         help="Path to trained model checkpoint (.pth)")
+    parser.add_argument("--allow-untrained", action="store_true",
+                        help="Allow fallback to untrained baseline weights or synthetic models for development testing")
     args = parser.parse_args()
 
     audio_path = Path(args.file_path)
@@ -42,14 +44,34 @@ def main():
     print(f"  Model Path:   {args.model}")
     print("-" * 60)
 
-    classifier = SoundClassifier(model_path=args.model)
+    try:
+        classifier = SoundClassifier(model_path=args.model, allow_untrained=args.allow_untrained)
+    except FileNotFoundError as e:
+        print(f"[ERROR] {e}")
+        sys.exit(1)
+    except ValueError as e:
+        print(f"[ERROR] Checkpoint verification/provenance error:\n        {e}")
+        sys.exit(1)
+
     result = classifier.predict_file(audio_path)
 
     predicted_class = result["predicted_class"]
     confidence = result["confidence"]
+    is_trained = result.get("is_trained", False)
+    is_synthetic = result.get("is_synthetic", False)
+    data_type = result.get("training_data_type", "unknown")
+
+    if is_trained and not is_synthetic and data_type == "urbansound8k":
+        status_str = "YES (Verified UrbanSound8K)"
+    elif is_synthetic:
+        status_str = "NO (Synthetic Development Model)"
+    else:
+        status_str = f"NO (Untrained / Baseline - {data_type})"
 
     print(f"  PREDICTED CLASS:  {predicted_class.upper()}")
     print(f"  CONFIDENCE:       {confidence * 100:.2f}%")
+    print(f"  IS TRAINED MODEL: {status_str}")
+    print(f"  DATA PROVENANCE:  {data_type.upper()}")
     print("-" * 60)
     print("  TOP PREDICTIONS:")
 

@@ -5,7 +5,8 @@ Supports:
 - Official UrbanSound8K 10-fold cross-validation scheme
 - Loading audio, preprocessing, and extracting Log-Mel Spectrograms
 - On-the-fly audio data augmentation
-- Synthetic fallback mode for local testing without downloading the full dataset
+- Explicit opt-in synthetic mode for local testing without downloading the full dataset
+- Explicit training-data provenance tracking (is_synthetic, training_data_type)
 
 Usage:
     from src.training.dataset import UrbanSoundDataset, create_dataloaders
@@ -59,8 +60,11 @@ class UrbanSoundDataset(Dataset):
             AudioAugmenter(use_shift=True, use_noise=True) if is_training else None
         )
         self.synthetic_size = synthetic_size
+        self.skipped_files: list[str] = []
 
         if synthetic_size is not None and synthetic_size > 0:
+            self.is_synthetic: bool = True
+            self.training_data_type: str = "synthetic"
             self.samples = self._generate_synthetic_manifest(synthetic_size)
             logger.info(f"Initialized synthetic dataset with {synthetic_size} samples.")
             return
@@ -69,13 +73,21 @@ class UrbanSoundDataset(Dataset):
         metadata_path = Path(metadata_path or settings.URBANSOUND8K_METADATA)
         audio_dir = Path(audio_dir or settings.URBANSOUND8K_AUDIO_DIR)
 
-        if not metadata_path.exists() or not audio_dir.exists():
-            logger.warning(
-                f"UrbanSound8K not found at {metadata_path}. "
-                "Falling back to synthetic mode (100 samples) for development."
+        if not metadata_path.exists():
+            raise FileNotFoundError(
+                f"UrbanSound8K metadata not found at: {metadata_path}\n"
+                f"Please place the dataset in '{settings.URBANSOUND8K_DIR}' with structure:\n"
+                f"  {settings.URBANSOUND8K_DIR}/\n"
+                f"  |-- audio/fold1/ ... fold10/\n"
+                f"  \\-- metadata/UrbanSound8K.csv\n"
+                f"For testing without the real dataset, pass synthetic_size=<N>."
             )
-            self.samples = self._generate_synthetic_manifest(100)
-            return
+
+        if not audio_dir.exists():
+            raise FileNotFoundError(
+                f"UrbanSound8K audio directory not found at: {audio_dir}\n"
+                f"Expected directory: {settings.URBANSOUND8K_AUDIO_DIR}"
+            )
 
         df = pd.read_csv(metadata_path)
         if folds is not None:
@@ -91,16 +103,25 @@ class UrbanSoundDataset(Dataset):
                     "class_id": int(row["classID"]),
                     "class_name": str(row["class"]),
                 })
+            else:
+                self.skipped_files.append(str(file_path))
+
+        if self.skipped_files:
+            logger.warning(
+                f"Encountered {len(self.skipped_files)} missing audio files referenced in metadata."
+            )
 
         if not records:
-            logger.warning(
-                "Metadata was found, but referenced audio files are missing. "
-                "Falling back to synthetic mode."
+            raise FileNotFoundError(
+                f"No audio files found for folds {folds} in {audio_dir}. "
+                f"Check that audio fold directories contain .wav files."
             )
-            self.samples = self._generate_synthetic_manifest(100)
-        else:
-            self.samples = records
-            logger.info(f"Loaded {len(self.samples)} samples from folds {folds}.")
+
+        # Real dataset successfully verified
+        self.is_synthetic = False
+        self.training_data_type = "urbansound8k"
+        self.samples = records
+        logger.info(f"Loaded {len(self.samples)} verified samples from folds {folds}.")
 
     def _generate_synthetic_manifest(self, size: int) -> list[dict]:
         """Generate manifest entries for synthetic samples."""
@@ -148,7 +169,12 @@ class UrbanSoundDataset(Dataset):
         if item.get("synthetic", False):
             audio, sr = self._get_synthetic_audio(item["seed"], item["class_id"])
         else:
-            audio, sr = load_audio(item["file_path"])
+            try:
+                audio, sr = load_audio(item["file_path"])
+            except Exception as e:
+                logger.warning(f"Failed to decode audio file {item['file_path']}: {e}. Using zero-padding.")
+                sr = settings.SAMPLE_RATE
+                audio = np.zeros(int(sr * settings.AUDIO_DURATION), dtype=np.float32)
 
         # Preprocessing (peak normalization)
         audio = preprocess_audio(audio, sr)
@@ -161,7 +187,6 @@ class UrbanSoundDataset(Dataset):
         log_mel = extract_log_mel_spectrogram(audio, sr)
 
         # Convert to tensor: shape (1, n_mels, time_frames)
-        # Add channel dimension
         feature_tensor = torch.from_numpy(log_mel).unsqueeze(0).float()
         label_tensor = torch.tensor(item["class_id"], dtype=torch.long)
 

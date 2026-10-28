@@ -1,11 +1,11 @@
 {
   "overall": {
-    "accuracy": 0.2,
-    "macro_precision": 0.0476,
-    "macro_recall": 0.2,
-    "macro_f1": 0.075,
-    "weighted_f1": 0.075,
-    "total_samples": 100
+    "accuracy": 0.1,
+    "macro_precision": 0.01,
+    "macro_recall": 0.1,
+    "macro_f1": 0.0182,
+    "weighted_f1": 0.0182,
+    "total_samples": 50
   },
   "per_class": {
     "air_conditioner": {
@@ -13,101 +13,101 @@
       "precision": 0.0,
       "recall": 0.0,
       "f1_score": 0.0,
-      "support": 10
+      "support": 5
     },
     "car_horn": {
       "class_id": 1,
       "precision": 0.0,
       "recall": 0.0,
       "f1_score": 0.0,
-      "support": 10
+      "support": 5
     },
     "children_playing": {
       "class_id": 2,
       "precision": 0.0,
       "recall": 0.0,
       "f1_score": 0.0,
-      "support": 10
+      "support": 5
     },
     "dog_bark": {
       "class_id": 3,
-      "precision": 0.1429,
-      "recall": 1.0,
-      "f1_score": 0.25,
-      "support": 10
-    },
-    "drilling": {
-      "class_id": 4,
       "precision": 0.0,
       "recall": 0.0,
       "f1_score": 0.0,
-      "support": 10
+      "support": 5
+    },
+    "drilling": {
+      "class_id": 4,
+      "precision": 0.1,
+      "recall": 1.0,
+      "f1_score": 0.1818,
+      "support": 5
     },
     "engine_idling": {
       "class_id": 5,
       "precision": 0.0,
       "recall": 0.0,
       "f1_score": 0.0,
-      "support": 10
+      "support": 5
     },
     "gun_shot": {
       "class_id": 6,
       "precision": 0.0,
       "recall": 0.0,
       "f1_score": 0.0,
-      "support": 10
+      "support": 5
     },
     "jackhammer": {
       "class_id": 7,
-      "precision": 0.3333,
-      "recall": 1.0,
-      "f1_score": 0.5,
-      "support": 10
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "support": 5
     },
     "siren": {
       "class_id": 8,
       "precision": 0.0,
       "recall": 0.0,
       "f1_score": 0.0,
-      "support": 10
+      "support": 5
     },
     "street_music": {
       "class_id": 9,
       "precision": 0.0,
       "recall": 0.0,
       "f1_score": 0.0,
-      "support": 10
+      "support": 5
     }
   },
   "top_confusions": [
     {
       "actual_class": "air_conditioner",
-      "predicted_class": "dog_bark",
-      "count": 10,
+      "predicted_class": "drilling",
+      "count": 5,
       "percentage_of_actual": 100.0
     },
     {
       "actual_class": "car_horn",
-      "predicted_class": "dog_bark",
-      "count": 10,
+      "predicted_class": "drilling",
+      "count": 5,
       "percentage_of_actual": 100.0
     },
     {
       "actual_class": "children_playing",
-      "predicted_class": "dog_bark",
-      "count": 10,
+      "predicted_class": "drilling",
+      "count": 5,
       "percentage_of_actual": 100.0
     },
     {
-      "actual_class": "drilling",
-      "predicted_class": "jackhammer",
-      "count": 10,
+      "actual_class": "dog_bark",
+      "predicted_class": "drilling",
+      "count": 5,
       "percentage_of_actual": 100.0
     },
     {
       "actual_class": "engine_idling",
-      "predicted_class": "dog_bark",
-      "count": 10,
+      "predicted_class": "drilling",
+      "count": 5,
       "percentage_of_actual": 100.0
     }
   ]

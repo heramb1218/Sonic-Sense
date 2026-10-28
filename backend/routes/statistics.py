@@ -10,8 +10,8 @@ Endpoints:
 from fastapi import APIRouter, Depends, Query
 
 from src.config.settings import settings
-from src.database.connection import get_db_manager
 from src.database.repository import ObservationRepository
+from backend.dependencies import get_repository
 from backend.schemas.observation import (
     GlobalStatisticsResponse,
     SoundClassesResponse,
@@ -19,10 +19,6 @@ from backend.schemas.observation import (
 )
 
 router = APIRouter(tags=["Statistics & Analytics"])
-
-
-def get_repository() -> ObservationRepository:
-    return ObservationRepository(db_manager=get_db_manager())
 
 
 @router.get("/statistics", response_model=GlobalStatisticsResponse)

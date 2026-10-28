@@ -10,16 +10,12 @@ Endpoints:
 from typing import Optional
 from fastapi import APIRouter, Depends, Query
 
-from src.database.connection import get_db_manager
 from src.database.repository import ObservationRepository
 from src.spatial.h3_grid import H3GridManager
+from backend.dependencies import get_repository
 from backend.schemas.observation import HeatmapPoint, ObservationResponse
 
 router = APIRouter(tags=["Spatial Intelligence"])
-
-
-def get_repository() -> ObservationRepository:
-    return ObservationRepository(db_manager=get_db_manager())
 
 
 @router.get("/heatmap", response_model=list[HeatmapPoint])

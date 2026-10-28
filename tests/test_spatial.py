@@ -21,22 +21,32 @@ from fastapi.testclient import TestClient
 
 from backend.main import app
 from src.spatial.h3_grid import H3GridManager
-from src.database.connection import get_db_manager
+from src.database.connection import DatabaseManager
 from src.database.repository import ObservationRepository
+from backend.dependencies import get_repository
 
 
 @pytest.fixture(scope="module")
-def client():
-    """FastAPI TestClient fixture."""
-    return TestClient(app)
+def test_db():
+    """Isolated in-memory test database for spatial tests."""
+    manager = DatabaseManager(db_url="sqlite:///:memory:")
+    yield manager
+    manager.engine.dispose()
 
 
 @pytest.fixture(scope="module")
-def repo():
-    """Observation repository fixture."""
-    db = get_db_manager()
-    db.init_db()
-    return ObservationRepository(db_manager=db)
+def repo(test_db):
+    """Observation repository fixture using isolated in-memory DB."""
+    return ObservationRepository(db_manager=test_db)
+
+
+@pytest.fixture(scope="module")
+def client(repo):
+    """FastAPI TestClient fixture with isolated test database override."""
+    app.dependency_overrides[get_repository] = lambda: repo
+    with TestClient(app) as test_client:
+        yield test_client
+    app.dependency_overrides.clear()
 
 
 class TestH3GridManager:

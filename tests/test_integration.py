@@ -30,24 +30,34 @@ from src.streaming.broker import get_broker
 from src.streaming.producer import NoiseEventProducer
 from src.streaming.consumer import NoiseEventConsumer
 from src.anomaly.detector import AcousticAnomalyDetector
-from src.database.connection import get_db_manager
+from src.database.connection import DatabaseManager
 from src.database.repository import ObservationRepository
 from src.spatial.h3_grid import H3GridManager
+from backend.dependencies import get_repository
 from backend.main import app
 
 
 @pytest.fixture(scope="module")
-def client():
-    """FastAPI TestClient fixture."""
-    return TestClient(app)
+def test_db():
+    """Isolated in-memory test database for integration tests."""
+    manager = DatabaseManager(db_url="sqlite:///:memory:")
+    yield manager
+    manager.engine.dispose()
 
 
 @pytest.fixture(scope="module")
-def db_repo():
+def db_repo(test_db):
     """Database repository fixture initialized for integration tests."""
-    db = get_db_manager()
-    db.init_db()
-    return ObservationRepository(db_manager=db)
+    return ObservationRepository(db_manager=test_db)
+
+
+@pytest.fixture(scope="module")
+def client(db_repo):
+    """FastAPI TestClient fixture with isolated test database override."""
+    app.dependency_overrides[get_repository] = lambda: db_repo
+    with TestClient(app) as test_client:
+        yield test_client
+    app.dependency_overrides.clear()
 
 
 @pytest.fixture(scope="module")
@@ -79,7 +89,10 @@ class TestEndToEndSystemIntegration:
         assert log_mel.shape[0] == 128
         assert log_mel.shape[1] > 100
 
-        classifier = SoundClassifier()
+        try:
+            classifier = SoundClassifier()
+        except (FileNotFoundError, ValueError):
+            classifier = SoundClassifier(allow_untrained=True)
         pred = classifier.predict_audio(proc_audio, sr=sr)
 
         assert "predicted_class" in pred
@@ -106,7 +119,10 @@ class TestEndToEndSystemIntegration:
         # Coordinate should have updated with mobility
         assert (sensor.lat != initial_lat) or (sensor.lon != initial_lon)
 
-        classifier = SoundClassifier()
+        try:
+            classifier = SoundClassifier()
+        except (FileNotFoundError, ValueError):
+            classifier = SoundClassifier(allow_untrained=True)
         event = sensor.capture_observation(
             audio_file_path=sample_audio_path,
             classifier=classifier,

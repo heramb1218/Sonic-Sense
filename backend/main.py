@@ -23,11 +23,13 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from contextlib import asynccontextmanager
 import uvicorn
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, Depends, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.config.settings import settings
 from src.database.connection import get_db_manager
+from src.database.repository import ObservationRepository
+from backend.dependencies import get_repository
 from backend.routes.observations import router as observations_router
 from backend.routes.spatial import router as spatial_router
 from backend.routes.statistics import router as statistics_router
@@ -76,13 +78,12 @@ app.include_router(statistics_router)
 
 
 @app.get("/health", response_model=HealthResponse, tags=["System"])
-def health_check():
+def health_check(repo: ObservationRepository = Depends(get_repository)):
     """System health check and environmental status."""
-    db = get_db_manager()
     return HealthResponse(
         status="healthy",
         timestamp=datetime.now(timezone.utc).isoformat(),
-        database_engine=db.engine.dialect.name.upper(),
+        database_engine=repo.db.engine.dialect.name.upper(),
         streaming_mode=settings.STREAMING_MODE,
         active_connections=ws_manager.connection_count,
     )

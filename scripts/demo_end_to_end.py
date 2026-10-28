@@ -91,7 +91,11 @@ def main():
     # Stage 2: Deep Learning Sound Classifier
     # -------------------------------------------------------------------------
     t0 = time.perf_counter()
-    classifier = SoundClassifier()
+    try:
+        classifier = SoundClassifier()
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"[WARNING] Production model not available ({exc}). Running audit with explicitly permitted development baseline weights.")
+        classifier = SoundClassifier(allow_untrained=True)
     pred = classifier.predict_audio(processed_audio, sr=sr)
     latency_ms = (time.perf_counter() - t0) * 1000
 

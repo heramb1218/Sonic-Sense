@@ -1,70 +1,70 @@
 {
-  "timestamp": "2026-10-14T18:42:45.902019+00:00",
+  "timestamp": "2026-10-28T16:53:28.389804+00:00",
   "passed_stages": 9,
   "total_stages": 9,
-  "total_latency_ms": 4384.77,
+  "total_latency_ms": 4121.28,
   "stages": [
     {
       "stage": 1,
       "name": "Audio Preprocessing & Log-Mel Extraction",
       "passed": true,
-      "latency_ms": 937.45,
+      "latency_ms": 4.03,
       "details": "Sample rate: 22050 Hz, Shape: (128, 173), Range: [-61.4, 0.0] dB"
     },
     {
       "stage": 2,
       "name": "Deep Learning Sound Classification",
       "passed": true,
-      "latency_ms": 393.15,
-      "details": "Predicted: 'dog_bark' (19.7% confidence)"
+      "latency_ms": 323.87,
+      "details": "Predicted: 'siren' (21.5% confidence)"
     },
     {
       "stage": 3,
       "name": "Sensor Hardware Calibration & Mobility",
       "passed": true,
-      "latency_ms": 214.08,
-      "details": "Node at (18.5204, 73.8567), Calibrated dB: 76.2"
+      "latency_ms": 46.35,
+      "details": "Node at (18.5204, 73.8567), Calibrated dB: 73.9"
     },
     {
       "stage": 4,
       "name": "Message Broker Stream Publication",
       "passed": true,
-      "latency_ms": 0.1,
-      "details": "Topic: 'audit-stream-1ed5b6', Broker Offset: 1"
+      "latency_ms": 0.06,
+      "details": "Topic: 'audit-stream-7c3f42', Broker Offset: 1"
     },
     {
       "stage": 5,
       "name": "Stream Consumer Ingestion & FIFO Ordering",
       "passed": true,
-      "latency_ms": 0.24,
-      "details": "Consumed event ID: 385ac08e-0911-42f1-9d47-016d18b20f50"
+      "latency_ms": 0.1,
+      "details": "Consumed event ID: e38ad2b4-f29c-44d6-be68-44aca1020b0c"
     },
     {
       "stage": 6,
       "name": "Multi-Factor Acoustic Anomaly Detection",
       "passed": true,
-      "latency_ms": 0.06,
-      "details": "Severity: NORMAL, Score: 1.49, Reasons: 0"
+      "latency_ms": 0.03,
+      "details": "Severity: NORMAL, Score: 1.07, Reasons: 0"
     },
     {
       "stage": 7,
       "name": "Spatial-Temporal Database Persistence",
       "passed": true,
-      "latency_ms": 131.37,
-      "details": "Dialect: SQLITE, Saved Record ID: 204"
+      "latency_ms": 64.59,
+      "details": "Dialect: SQLITE, Saved Record ID: 622"
     },
     {
       "stage": 8,
       "name": "Uber H3 Hexagonal Spatial Aggregation",
       "passed": true,
-      "latency_ms": 0.23,
-      "details": "Cells: 3, GeoJSON features: 3"
+      "latency_ms": 0.11,
+      "details": "Cells: 1, GeoJSON features: 1"
     },
     {
       "stage": 9,
       "name": "REST API & Real-Time WebSocket Delivery",
       "passed": true,
-      "latency_ms": 78.04,
+      "latency_ms": 36.5,
       "details": "POST HTTP 201, WebSocket received broadcast matching event_id"
     }
   ]

@@ -159,7 +159,7 @@ urban-noise-intelligence/
 │   ├── generate_sample_audio.py# Synthetic acoustic waveform generator
 │   ├── run_live_stream.py      # Standalone sensor-to-broker-to-consumer streamer
 │   ├── run_platform.py         # SINGLE-COMMAND MASTER PLATFORM LAUNCHER
-│   └── train_model.py          # PyTorch CNN training loop with augmentation
+│   └── train_cnn.py            # PyTorch CNN training loop with augmentation
 ├── src/                        # Core algorithmic engine modules
 │   ├── anomaly/                # Spatial-temporal z-score anomaly detector
 │   ├── audio/                  # Audio I/O, resampling, and normalization
@@ -271,8 +271,12 @@ TOTAL END-TO-END LATENCY  : 4384.8 ms
 # 1. Generate synthetic urban acoustic audio waveforms:
 python scripts/generate_sample_audio.py
 
-# 2. Evaluate trained PyTorch CNN model & generate confusion matrix:
-python scripts/evaluate_model.py
+# 2. Train PyTorch CNN classifier on UrbanSound8K (or use --synthetic for smoke test):
+python scripts/train_cnn.py --epochs 20 --augment --weighted-loss
+# (Smoke test without full 6 GB dataset: python scripts/train_cnn.py --synthetic --epochs 3)
+
+# 3. Evaluate trained PyTorch CNN model & generate confusion matrix:
+python scripts/evaluate_model.py --model models/cnn_urban_sound.pth --fold 10
 
 # 3. Execute multi-factor anomaly detection over simulated events:
 python scripts/detect_anomalies.py

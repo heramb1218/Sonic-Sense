@@ -158,3 +158,16 @@ TOTAL PIPELINE LATENCY                         : 4,384.77 ms
 
 ### RQ6: What are the main limitations when moving from controlled datasets to real-world crowdsourced urban audio?
 **Answer**: Key challenges include variable microphone hardware frequency responses, acoustic occlusion inside pockets or bags, wind/handling noise, intermittent network connectivity, and non-uniform spatial crowdsourcing density. Robust production deployments require edge-side audio filtering, spatial interpolation over unmonitored zones, and automated privacy masking of conversational speech.
+
+
+### Experiment Evaluation
+- **Checkpoint**: `test_synth_checkpoint.pth`
+- **Test Samples**: 50
+- **Accuracy**: 10.00%
+- **Macro Precision**: 1.00%
+- **Macro Recall**: 10.00%
+- **Macro F1-Score**: 1.82%
+- **Weighted F1-Score**: 1.82%
+- **Artifacts**:
+  - Confusion Matrix: `results/confusion_matrix.png`
+  - Full Report: `results/evaluation_report.json`

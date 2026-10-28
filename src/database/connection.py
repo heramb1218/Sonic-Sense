@@ -27,13 +27,18 @@ class DatabaseManager:
         self.echo = echo
 
         connect_args = {}
+        engine_kwargs = {}
         if self.db_url.startswith("sqlite"):
             connect_args["check_same_thread"] = False
+        if self.db_url == "sqlite:///:memory:":
+            from sqlalchemy.pool import StaticPool
+            engine_kwargs["poolclass"] = StaticPool
 
         self.engine = create_engine(
             self.db_url,
             echo=self.echo,
             connect_args=connect_args,
+            **engine_kwargs,
         )
         self.SessionFactory = sessionmaker(bind=self.engine, autocommit=False, autoflush=False)
         self.init_db()
@@ -85,3 +90,14 @@ def get_db_manager(db_url: Optional[str] = None) -> DatabaseManager:
     if _db_manager is None or db_url is not None:
         _db_manager = DatabaseManager(db_url=db_url)
     return _db_manager
+
+
+def reset_db_manager() -> None:
+    """Reset the singleton database manager instance."""
+    global _db_manager
+    if _db_manager is not None:
+        try:
+            _db_manager.engine.dispose()
+        except Exception:
+            pass
+        _db_manager = None

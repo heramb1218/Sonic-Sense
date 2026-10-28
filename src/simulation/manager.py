@@ -44,7 +44,14 @@ class SimulationFleet:
         if classifier is not None:
             self.classifier = classifier
         else:
-            self.classifier = SoundClassifier(model_path=model_path or settings.DEFAULT_MODEL_PATH)
+            try:
+                self.classifier = SoundClassifier(model_path=model_path or settings.DEFAULT_MODEL_PATH)
+            except (FileNotFoundError, ValueError) as exc:
+                logger.info(
+                    "Simulation fleet running with untrained baseline classifier (allow_untrained=True): %s",
+                    exc,
+                )
+                self.classifier = SoundClassifier(model_path=model_path, allow_untrained=True)
 
         # Initialize sensors distributed across zones
         self.sensors = self._init_sensors()

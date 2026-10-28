@@ -1,6 +1,7 @@
 """Backend Schemas Package."""
 
 from backend.schemas.observation import (
+    ObservationCreate,
     ObservationResponse,
     HeatmapPoint,
     SoundClassesResponse,
@@ -10,6 +11,7 @@ from backend.schemas.observation import (
 )
 
 __all__ = [
+    "ObservationCreate",
     "ObservationResponse",
     "HeatmapPoint",
     "SoundClassesResponse",

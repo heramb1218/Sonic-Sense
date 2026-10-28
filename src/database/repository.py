@@ -16,7 +16,7 @@ Implements the complete set of required spatial-temporal queries:
 
 import math
 from datetime import datetime, timezone, timedelta
-from typing import Optional, Sequence, Union
+from typing import Optional, Sequence, Union, Any
 from sqlalchemy import func, desc, and_
 
 from src.database.connection import DatabaseManager, get_db_manager
@@ -32,8 +32,10 @@ class ObservationRepository:
         self.db = db_manager or get_db_manager()
         self.anomaly_detector = AcousticAnomalyDetector()
 
-    def insert_observation(self, event: dict) -> NoiseObservation:
+    def insert_observation(self, event: Union[dict, Any]) -> NoiseObservation:
         """Insert a single acoustic event record."""
+        if hasattr(event, "model_dump"):
+            event = event.model_dump()
         ts = event.get("timestamp")
         if isinstance(ts, str):
             # Parse ISO-8601 string to datetime
@@ -81,6 +83,8 @@ class ObservationRepository:
         count = 0
         with self.db.session_scope() as session:
             for ev in events:
+                if hasattr(ev, "model_dump"):
+                    ev = ev.model_dump()
                 ts = ev.get("timestamp")
                 if isinstance(ts, str):
                     ts = datetime.fromisoformat(ts.replace("Z", "+00:00"))
