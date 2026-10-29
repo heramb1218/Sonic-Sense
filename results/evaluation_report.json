@@ -1,114 +1,114 @@
 {
   "overall": {
-    "accuracy": 0.1,
-    "macro_precision": 0.01,
-    "macro_recall": 0.1,
-    "macro_f1": 0.0182,
-    "weighted_f1": 0.0182,
-    "total_samples": 50
+    "accuracy": 0.7419,
+    "macro_precision": 0.7663,
+    "macro_recall": 0.7702,
+    "macro_f1": 0.7564,
+    "weighted_f1": 0.7357,
+    "total_samples": 837
   },
   "per_class": {
     "air_conditioner": {
       "class_id": 0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1_score": 0.0,
-      "support": 5
+      "precision": 0.8133,
+      "recall": 0.61,
+      "f1_score": 0.6971,
+      "support": 100
     },
     "car_horn": {
       "class_id": 1,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1_score": 0.0,
-      "support": 5
+      "precision": 0.7838,
+      "recall": 0.8788,
+      "f1_score": 0.8286,
+      "support": 33
     },
     "children_playing": {
       "class_id": 2,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1_score": 0.0,
-      "support": 5
+      "precision": 0.6364,
+      "recall": 0.7,
+      "f1_score": 0.6667,
+      "support": 100
     },
     "dog_bark": {
       "class_id": 3,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1_score": 0.0,
-      "support": 5
+      "precision": 0.8313,
+      "recall": 0.69,
+      "f1_score": 0.7541,
+      "support": 100
     },
     "drilling": {
       "class_id": 4,
-      "precision": 0.1,
-      "recall": 1.0,
-      "f1_score": 0.1818,
-      "support": 5
+      "precision": 0.7586,
+      "recall": 0.44,
+      "f1_score": 0.557,
+      "support": 100
     },
     "engine_idling": {
       "class_id": 5,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1_score": 0.0,
-      "support": 5
+      "precision": 0.7553,
+      "recall": 0.7634,
+      "f1_score": 0.7594,
+      "support": 93
     },
     "gun_shot": {
       "class_id": 6,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1_score": 0.0,
-      "support": 5
+      "precision": 0.8649,
+      "recall": 1.0,
+      "f1_score": 0.9275,
+      "support": 32
     },
     "jackhammer": {
       "class_id": 7,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1_score": 0.0,
-      "support": 5
+      "precision": 0.6118,
+      "recall": 0.9688,
+      "f1_score": 0.75,
+      "support": 96
     },
     "siren": {
       "class_id": 8,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1_score": 0.0,
-      "support": 5
+      "precision": 0.8421,
+      "recall": 0.7711,
+      "f1_score": 0.805,
+      "support": 83
     },
     "street_music": {
       "class_id": 9,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1_score": 0.0,
-      "support": 5
+      "precision": 0.7652,
+      "recall": 0.88,
+      "f1_score": 0.8186,
+      "support": 100
     }
   },
   "top_confusions": [
     {
+      "actual_class": "drilling",
+      "predicted_class": "jackhammer",
+      "count": 41,
+      "percentage_of_actual": 41.0
+    },
+    {
       "actual_class": "air_conditioner",
-      "predicted_class": "drilling",
-      "count": 5,
-      "percentage_of_actual": 100.0
-    },
-    {
-      "actual_class": "car_horn",
-      "predicted_class": "drilling",
-      "count": 5,
-      "percentage_of_actual": 100.0
-    },
-    {
-      "actual_class": "children_playing",
-      "predicted_class": "drilling",
-      "count": 5,
-      "percentage_of_actual": 100.0
+      "predicted_class": "engine_idling",
+      "count": 21,
+      "percentage_of_actual": 21.0
     },
     {
       "actual_class": "dog_bark",
-      "predicted_class": "drilling",
-      "count": 5,
-      "percentage_of_actual": 100.0
+      "predicted_class": "children_playing",
+      "count": 13,
+      "percentage_of_actual": 13.0
     },
     {
-      "actual_class": "engine_idling",
-      "predicted_class": "drilling",
-      "count": 5,
-      "percentage_of_actual": 100.0
+      "actual_class": "children_playing",
+      "predicted_class": "dog_bark",
+      "count": 12,
+      "percentage_of_actual": 12.0
+    },
+    {
+      "actual_class": "siren",
+      "predicted_class": "children_playing",
+      "count": 12,
+      "percentage_of_actual": 14.46
     }
   ]
 }

@@ -69,6 +69,17 @@ def main():
     parser.add_argument("--synthetic", action="store_true", help="Force synthetic dataset mode for fast smoke test")
     parser.add_argument("--synthetic-size", type=int, default=120, help="Number of samples in synthetic training set")
     parser.add_argument(
+        "--patience",
+        type=int,
+        default=None,
+        help="Early stopping patience (number of epochs without improvement before stopping)",
+    )
+    parser.add_argument(
+        "--candidate",
+        action="store_true",
+        help="Save model as candidate checkpoint models/candidate_cnn_urban_sound.pth for evaluation before production promotion",
+    )
+    parser.add_argument(
         "--save-path",
         type=str,
         default=None,
@@ -95,9 +106,15 @@ def main():
     else:
         device = torch.device(args.device)
 
-    # Resolve output checkpoint path (Task 1)
+    # Resolve output checkpoint path (Task 1 & Candidate handling)
+    candidate_path = PROJECT_ROOT / "models" / "candidate_cnn_urban_sound.pth"
     if args.save_path is None:
-        save_path = DEFAULT_SYNTHETIC_PATH if args.synthetic else DEFAULT_PRODUCTION_PATH
+        if args.synthetic:
+            save_path = DEFAULT_SYNTHETIC_PATH
+        elif args.candidate:
+            save_path = candidate_path
+        else:
+            save_path = DEFAULT_PRODUCTION_PATH
     else:
         save_path = Path(args.save_path)
         # Protect production checkpoint from accidental synthetic overwrites
@@ -217,6 +234,7 @@ def main():
         lr=args.lr,
         weight_decay=args.weight_decay,
         class_weights=class_weights,
+        early_stopping_patience=args.patience,
         training_data_type=train_ds.training_data_type,
         is_synthetic=train_ds.is_synthetic,
         device=device,

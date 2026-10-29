@@ -150,6 +150,7 @@ def train_model(
     lr: float = 0.001,
     weight_decay: float = 1e-4,
     class_weights: Optional[torch.Tensor] = None,
+    early_stopping_patience: Optional[int] = None,
     training_data_type: Optional[str] = None,
     is_synthetic: Optional[bool] = None,
     device: Optional[torch.device] = None,
@@ -220,6 +221,7 @@ def train_model(
     }
 
     best_val_acc = -1.0
+    epochs_no_improve = 0
 
     if verbose:
         logger.info(
@@ -250,6 +252,7 @@ def train_model(
         # Save best model checkpoint
         if val_acc > best_val_acc:
             best_val_acc = val_acc
+            epochs_no_improve = 0
             checkpoint = {
                 "epoch": epoch,
                 "model_state_dict": model.state_dict(),
@@ -277,5 +280,14 @@ def train_model(
             torch.save(checkpoint, str(save_path))
             if verbose:
                 print(f"  --> Saved new best checkpoint to {save_path} (Val Acc: {best_val_acc:.2f}%)")
+        else:
+            epochs_no_improve += 1
+            if early_stopping_patience is not None and epochs_no_improve >= early_stopping_patience:
+                if verbose:
+                    print(
+                        f"Early stopping triggered: no validation improvement for "
+                        f"{early_stopping_patience} consecutive epochs. Best Val Acc: {best_val_acc:.2f}%."
+                    )
+                break
 
     return history

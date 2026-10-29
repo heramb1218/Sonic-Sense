@@ -171,3 +171,16 @@ TOTAL PIPELINE LATENCY                         : 4,384.77 ms
 - **Artifacts**:
   - Confusion Matrix: `results/confusion_matrix.png`
   - Full Report: `results/evaluation_report.json`
+
+
+### Experiment Evaluation
+- **Checkpoint**: `candidate_cnn_urban_sound.pth`
+- **Test Samples**: 837
+- **Accuracy**: 74.19%
+- **Macro Precision**: 76.63%
+- **Macro Recall**: 77.02%
+- **Macro F1-Score**: 75.64%
+- **Weighted F1-Score**: 73.57%
+- **Artifacts**:
+  - Confusion Matrix: `results/confusion_matrix.png`
+  - Full Report: `results/evaluation_report.json`

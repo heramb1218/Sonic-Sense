@@ -69,9 +69,28 @@ class UrbanSoundDataset(Dataset):
             logger.info(f"Initialized synthetic dataset with {synthetic_size} samples.")
             return
 
-        # Attempt to load real dataset
-        metadata_path = Path(metadata_path or settings.URBANSOUND8K_METADATA)
-        audio_dir = Path(audio_dir or settings.URBANSOUND8K_AUDIO_DIR)
+        # Attempt to load real dataset with flexible path resolution
+        if metadata_path is not None:
+            metadata_path = Path(metadata_path)
+        else:
+            project_root = Path(__file__).resolve().parent.parent.parent
+            candidates = [
+                settings.URBANSOUND8K_METADATA,
+                project_root / "data" / "raw" / "UrbanSound8K" / "metadata" / "UrbanSound8K.csv",
+                project_root / "data" / "UrbanSound8K" / "metadata" / "UrbanSound8K.csv",
+            ]
+            metadata_path = next((p for p in candidates if p.exists()), candidates[0])
+
+        if audio_dir is not None:
+            audio_dir = Path(audio_dir)
+        else:
+            project_root = Path(__file__).resolve().parent.parent.parent
+            candidates = [
+                settings.URBANSOUND8K_AUDIO_DIR,
+                project_root / "data" / "raw" / "UrbanSound8K" / "audio",
+                project_root / "data" / "UrbanSound8K" / "audio",
+            ]
+            audio_dir = next((p for p in candidates if p.exists()), candidates[0])
 
         if not metadata_path.exists():
             raise FileNotFoundError(
@@ -90,25 +109,72 @@ class UrbanSoundDataset(Dataset):
             )
 
         df = pd.read_csv(metadata_path)
+
+        # 1. Validate required columns in metadata CSV
+        required_cols = {"slice_file_name", "fold", "classID"}
+        missing_cols = required_cols - set(df.columns)
+        if missing_cols:
+            raise ValueError(
+                f"UrbanSound8K metadata CSV is missing required columns: {sorted(list(missing_cols))}. "
+                f"Found columns: {list(df.columns)}"
+            )
+
+        # 2. Validate fold values in metadata (must be integers 1-10)
+        invalid_folds = set(df["fold"].unique()) - set(range(1, 11))
+        if invalid_folds:
+            raise ValueError(
+                f"UrbanSound8K metadata contains invalid fold numbers: {sorted(list(invalid_folds))}. "
+                f"Expected fold values between 1 and 10."
+            )
+
+        # 3. Validate class IDs in metadata (must be integers 0-9)
+        invalid_classes = set(df["classID"].unique()) - set(range(settings.NUM_CLASSES))
+        if invalid_classes:
+            raise ValueError(
+                f"UrbanSound8K metadata contains invalid classID values: {sorted(list(invalid_classes))}. "
+                f"Expected class IDs between 0 and {settings.NUM_CLASSES - 1}."
+            )
+
+        # 4. Validate requested folds parameter
         if folds is not None:
+            requested_set = set(folds)
+            invalid_requested = requested_set - set(range(1, 11))
+            if invalid_requested:
+                raise ValueError(
+                    f"Requested folds {sorted(list(invalid_requested))} are invalid. "
+                    f"Folds must be integers between 1 and 10."
+                )
+
+            # Check that each requested fold's directory exists and is not empty
+            for f in folds:
+                f_dir = audio_dir / f"fold{f}"
+                if not f_dir.exists() or not f_dir.is_dir():
+                    raise FileNotFoundError(f"Audio directory for requested fold {f} does not exist: {f_dir}")
+                wav_files = list(f_dir.glob("*.wav"))
+                if not wav_files:
+                    raise ValueError(f"Audio directory for requested fold {f} is empty: {f_dir}")
+
             df = df[df["fold"].isin(folds)].copy()
 
         # Build records: list of (file_path, class_id)
         records = []
         for _, row in df.iterrows():
-            file_path = audio_dir / f"fold{row['fold']}" / row["slice_file_name"]
+            file_path = audio_dir / f"fold{row['fold']}" / str(row["slice_file_name"])
             if file_path.exists():
                 records.append({
                     "file_path": str(file_path),
                     "class_id": int(row["classID"]),
-                    "class_name": str(row["class"]),
+                    "class_name": str(row.get("class", settings.URBAN_SOUND_CLASSES.get(int(row["classID"]), "unknown"))),
                 })
             else:
                 self.skipped_files.append(str(file_path))
 
-        if self.skipped_files:
-            logger.warning(
-                f"Encountered {len(self.skipped_files)} missing audio files referenced in metadata."
+        # 5. Strict missing file policy (refuse to proceed if missing files exceed 5% tolerance)
+        max_missing_tolerance = max(5, int(0.05 * len(df)))
+        if len(self.skipped_files) > max_missing_tolerance:
+            raise RuntimeError(
+                f"Data integrity failure: {len(self.skipped_files)} missing audio files out of {len(df)} "
+                f"referenced in metadata for folds {folds}. Data integrity is insufficient for genuine training."
             )
 
         if not records:
@@ -172,9 +238,8 @@ class UrbanSoundDataset(Dataset):
             try:
                 audio, sr = load_audio(item["file_path"])
             except Exception as e:
-                logger.warning(f"Failed to decode audio file {item['file_path']}: {e}. Using zero-padding.")
-                sr = settings.SAMPLE_RATE
-                audio = np.zeros(int(sr * settings.AUDIO_DURATION), dtype=np.float32)
+                logger.error(f"Failed to decode audio file {item['file_path']}: {e}")
+                raise RuntimeError(f"Corrupt or unreadable audio file: {item['file_path']} ({e})") from e
 
         # Preprocessing (peak normalization)
         audio = preprocess_audio(audio, sr)
